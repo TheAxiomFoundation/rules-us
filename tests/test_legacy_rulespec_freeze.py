@@ -139,7 +139,7 @@ def test_required_workflow_runs_freeze_before_validation() -> None:
         "validation-waiver-bootstrap-sha256: >-\n"
         "        ${{ fromJSON(needs.migration-authorization.outputs.allowed)"
     ) in workflow
-    assert "4ace5f0b7eedd316e5cb331a7b32a83b092f5a8e5ffceec60911c95a12818f88" in workflow
+    assert "082cf800326e1e512f93a6b9e64a45426aca1f9f34720c7216ebc92f719b79e9" in workflow
     assert "migration-authorization-path: .axiom/reviewed-migrations.json" in workflow
     assert "${{ !fromJSON(needs.migration-authorization.outputs.allowed) }}" in workflow
     assert "github.event.head_commit.message" not in workflow

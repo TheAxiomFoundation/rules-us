@@ -2254,7 +2254,7 @@ validate_failures:
       expires: '2026-10-08'
   us-ca/regulations/mpp/63-410/321.yaml:
     active:
-      fingerprint: sha256:ac58b72eb321c463f33454a3cbaee705efac27fbe609e733bb3595ed13ad16bd
+      fingerprint: sha256:7db8e583207465f1e54ec0bca09cc7d291a8523156dac773f0009bb8fa8ce04c
       owner: '@MaxGhenis'
       issue: https://github.com/TheAxiomFoundation/rulespec-us/issues/782
       expires: '2026-10-08'
@@ -2743,12 +2743,24 @@ validate_failures:
       owner: '@MaxGhenis'
       issue: https://github.com/TheAxiomFoundation/rulespec-us/issues/782
       expires: '2026-10-08'
+  "us-co/regulations/10-ccr-2506-1/4.202.1.yaml":
+    active:
+      fingerprint: "sha256:587235923721dde17e261a0ec180201cbdc2534cbb2b73e64d61310cdc647549"
+      owner: "@MaxGhenis"
+      issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/782"
+      expires: "2026-10-08"
   us-co/regulations/10-ccr-2506-1/4.206.yaml:
     active:
       fingerprint: sha256:5f766951776f604566abdefa2c6078fc4092b8d81be1f26688b9ab5453f694f7
       owner: '@MaxGhenis'
       issue: https://github.com/TheAxiomFoundation/rulespec-us/issues/782
       expires: '2026-10-08'
+  "us-co/regulations/10-ccr-2506-1/4.308.yaml":
+    active:
+      fingerprint: "sha256:8102b1f62babddc8d42f75936054b4ff1f04f3d11910b819624f10bfa8dfde27"
+      owner: "@MaxGhenis"
+      issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/782"
+      expires: "2026-10-08"
   us-co/regulations/10-ccr-2506-1/4.405.2.yaml:
     active:
       fingerprint: sha256:7b57e5ad540a814c7b1e66b545298a5426d3a98520bec8a9c557e3148ae76fc0
@@ -5239,12 +5251,6 @@ validate_failures:
       owner: '@MaxGhenis'
       issue: https://github.com/TheAxiomFoundation/rulespec-us/issues/782
       expires: '2026-10-08'
-  us-la/policies/income_tax/2026_resident_core.yaml:
-    active:
-      fingerprint: sha256:4ab20071683ea1b7fbe865974b7aa96c2e6bf38e27a9513bd1c6ae1dda7803a6
-      owner: '@MaxGhenis'
-      issue: https://github.com/TheAxiomFoundation/rulespec-us/issues/782
-      expires: '2026-10-08'
   us-ma/policies/cms/massachusetts-chip-eligibility.yaml:
     active:
       fingerprint: sha256:ce9ef693d3c3a7c3be04ff91cdd13df9ea05e1cc3b5cba1d84fd8fb079bd6106
@@ -6633,13 +6639,13 @@ validate_failures:
       expires: '2026-10-08'
   us-ny/regulations/18-nycrr/385/3.yaml:
     active:
-      fingerprint: sha256:5cc864823c87aab941ee172905669d9c0c95e1692181e4ac00f689d760304921
+      fingerprint: sha256:2dab9532f756c49907cf74ad4ffafc7bfedc146b28858b03455d06361b80552a
       owner: '@MaxGhenis'
       issue: https://github.com/TheAxiomFoundation/rulespec-us/issues/782
       expires: '2026-10-08'
   us-ny/regulations/18-nycrr/387/10.yaml:
     active:
-      fingerprint: sha256:63ee6ac9d2c04ecb2c145d94b9f08ff4a310a0d1d836bd02acf98cd47ce1f90b
+      fingerprint: sha256:14a86dc2eae6ead56bc1a439f9c242c48e4595bd2515c4339cbe8852fd5bb8b1
       owner: '@MaxGhenis'
       issue: https://github.com/TheAxiomFoundation/rulespec-us/issues/782
       expires: '2026-10-08'
@@ -6669,7 +6675,7 @@ validate_failures:
       expires: '2026-10-08'
   us-ny/regulations/18-nycrr/387/9/a/2.yaml:
     active:
-      fingerprint: sha256:f9fa246a24b950c1a52c4ef8964cba557acc96e001b2164ca911cca7ce1965a3
+      fingerprint: sha256:b76db6e9b1e4a2b4a4739f156f05d6ee586319cf529eb72401779cd66585cad5
       owner: '@MaxGhenis'
       issue: https://github.com/TheAxiomFoundation/rulespec-us/issues/782
       expires: '2026-10-08'

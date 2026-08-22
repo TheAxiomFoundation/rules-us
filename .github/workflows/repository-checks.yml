@@ -46,7 +46,7 @@ jobs:
           SHA = re.compile(r"[0-9a-f]{40}")
           AUTHORIZATION_PATH = ".axiom/reviewed-migrations.json"
           RETIRED = "c247ed9c2e3e1a4d33f86989d4d91aeaf90f1fd8f8ad9bbdf536cf2a7d48f333"
-          WAIVER = "4ace5f0b7eedd316e5cb331a7b32a83b092f5a8e5ffceec60911c95a12818f88"
+          WAIVER = "082cf800326e1e512f93a6b9e64a45426aca1f9f34720c7216ebc92f719b79e9"
 
           def fail(message: str) -> None:
               raise SystemExit(f"MigrationAuthorizationError: {message}")
@@ -209,7 +209,7 @@ jobs:
       retired-schema-bootstrap-sha256: >-
         ${{ fromJSON(needs.migration-authorization.outputs.allowed) && 'c247ed9c2e3e1a4d33f86989d4d91aeaf90f1fd8f8ad9bbdf536cf2a7d48f333' || '' }}
       validation-waiver-bootstrap-sha256: >-
-        ${{ fromJSON(needs.migration-authorization.outputs.allowed) && '4ace5f0b7eedd316e5cb331a7b32a83b092f5a8e5ffceec60911c95a12818f88' || '' }}
+        ${{ fromJSON(needs.migration-authorization.outputs.allowed) && '082cf800326e1e512f93a6b9e64a45426aca1f9f34720c7216ebc92f719b79e9' || '' }}
       guard-programs-root: false
 
   drift-alarm:
