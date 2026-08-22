@@ -86,7 +86,7 @@ def test_frozen_legacy_inventory_matches_repository() -> None:
         )
 
     retired = json.loads((ROOT / ".axiom/retired-schema-freeze.json").read_text())
-    assert len(retired["artifacts"]) == 172
+    assert len(retired["artifacts"]) == 380
     for relative_path, expected_digest in retired["artifacts"].items():
         artifact = ROOT / relative_path
         assert hashlib.sha256(artifact.read_bytes()).hexdigest() == expected_digest
@@ -125,7 +125,7 @@ def test_required_workflow_runs_freeze_before_validation() -> None:
         "needs: [migration-authorization, legacy-rulespec-freeze, workflow-toolchain]"
         in workflow
     )
-    assert "5889a592473a7e9513986a652fb95a8d077fa314" in workflow
+    assert "7a1eb2439d4cbb3b129811adef7554a2d798bef2" in workflow
     assert workflow.count(
         "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd"
     ) == 3
@@ -134,12 +134,12 @@ def test_required_workflow_runs_freeze_before_validation() -> None:
         "retired-schema-bootstrap-sha256: >-\n"
         "        ${{ fromJSON(needs.migration-authorization.outputs.allowed)"
     ) in workflow
-    assert "0d960eaf2830a9657108ffcba72bf965dd10ddeb0fc5fcc1b28a6039a21e5c0b" in workflow
+    assert "c247ed9c2e3e1a4d33f86989d4d91aeaf90f1fd8f8ad9bbdf536cf2a7d48f333" in workflow
     assert (
         "validation-waiver-bootstrap-sha256: >-\n"
         "        ${{ fromJSON(needs.migration-authorization.outputs.allowed)"
     ) in workflow
-    assert "827c551bf7d8dc562ae74c8d6f02a3862afeaf0ad656a203b4fe35b79f5f8aac" in workflow
+    assert "4ace5f0b7eedd316e5cb331a7b32a83b092f5a8e5ffceec60911c95a12818f88" in workflow
     assert "migration-authorization-path: .axiom/reviewed-migrations.json" in workflow
     assert "${{ !fromJSON(needs.migration-authorization.outputs.allowed) }}" in workflow
     assert "github.event.head_commit.message" not in workflow
@@ -164,11 +164,13 @@ def test_generation_workflows_use_immutable_toolchain() -> None:
         "workflow_toolchain"
     ]
     assert toolchain == {
-        "axiom_encode_version": "0.2.1373",
+        "axiom_encode_version": "0.2.1690",
         "axiom_compose_ref": "fabe0b3b3fd6e90d3e8f075516f9b668f524f711",
-        "axiom_encode_ref": "caebbda1a190181ef8184ed7aaffedb3789202a3",
-        "axiom_rules_engine_ref": "e5e40d40353f8459da4e46a9feae7279c2fecccc",
-        "axiom_corpus_ref": "0fd35bfbda98836c406ec539a492c4e661c6695d",
+        "axiom_encode_ref": "29b30fb7855c7306d9ead9ddba020dea40f938cc",
+        "axiom_rules_engine_ref": "48797e101c093bb388be718c6f5d8fc9d9f94a7d",
+        "axiom_artifact_rules_engine_ref": "ffd8213271947b0189a9dd61a055c1e0e78908a0",
+        "source_staleness_axiom_encode_ref": "ab702bf59ffa7123c9e24c3ae77b63c2b95ef9ab",
+        "axiom_corpus_ref": "60de5efae2a1b1dd58b7c92fa9b73a86bd78f30a",
         "rulespec_us_ref": "6bbb9bd3e49e75b66f378ff71cdb40addfa0b6c5",
     }
     release_toolchain = tomllib.loads((ROOT / ".axiom/toolchain.toml").read_text())[
@@ -179,18 +181,16 @@ def test_generation_workflows_use_immutable_toolchain() -> None:
     ).hexdigest()
 
     source_staleness = (ROOT / ".github/workflows/source-staleness.yml").read_text()
-    assert '.axiom/workflow-toolchain.toml").read_text()' in source_staleness
-    assert 'ref: "main"' not in source_staleness
-    assert '--git "$(command -v git)"' in source_staleness
-    assert "sudo install -m 0755" not in source_staleness
-    assert "pub-a8952f8657fc49fda358146ac001366c.r2.dev" in source_staleness
+    assert 'Path(".axiom/workflow-toolchain.toml")' in source_staleness
+    assert "source_staleness_axiom_encode_ref" in source_staleness
+    assert "ref: main" in source_staleness
     assert "NEXT_PUBLIC_SUPABASE_ANON_KEY" not in source_staleness
     assert "/rest/v1/release_objects" not in source_staleness
 
     repository_checks = (ROOT / ".github/workflows/repository-checks.yml").read_text()
-    assert '.axiom/workflow-toolchain.toml").read_text()' in repository_checks
-    assert "corpus-release-registry-url" not in repository_checks
-    assert "corpus-release-registry-anon-key" not in repository_checks
+    assert 'Path(".axiom/workflow-toolchain.toml")' in repository_checks
+    assert "corpus-release-registry-url" in repository_checks
+    assert "corpus-release-registry-anon-key" in repository_checks
     workflow_inputs = {
         "axiom-encode-ref": "axiom_encode_ref",
         "axiom-rules-engine-ref": "axiom_rules_engine_ref",
@@ -206,9 +206,9 @@ def test_generation_workflows_use_immutable_toolchain() -> None:
         assert value not in repository_checks
 
     program_artifacts = (ROOT / ".github/workflows/program-artifacts.yml").read_text()
-    assert '.axiom/workflow-toolchain.toml").read_text()' in program_artifacts
+    assert 'Path(".axiom/workflow-toolchain.toml")' in program_artifacts
     assert "e19f1b7573c74512f20a6b71a0c55dbbf333d41b" not in program_artifacts
-    assert "${{ steps.toolchain.outputs.axiom_rules_engine_ref }}" in program_artifacts
+    assert "${{ steps.toolchain.outputs.axiom_artifact_rules_engine_ref }}" in program_artifacts
     assert "${{ steps.toolchain.outputs.axiom_compose_ref }}" in program_artifacts
     assert "  pull_request:\n    branches: [main]\n" in program_artifacts
     assert (

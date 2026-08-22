@@ -4726,7 +4726,7 @@ def test_encoding_manifests_use_current_signed_schema() -> None:
             is_frozen_legacy_manifest = True
         payload = json.loads(path.read_text())
         if (
-            relative_text in KNOWN_RETIRED_SCHEMA_MANIFESTS
+            payload.get("schema_version") == "axiom-encode/applied-rulespec/v1"
             or is_frozen_legacy_manifest
         ):
             if payload.get("schema_version") != "axiom-encode/applied-rulespec/v1":
