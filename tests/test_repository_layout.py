@@ -22,15 +22,7 @@ DISALLOWED_GENERIC_RULE_NAMES = {
     "threshold",
     "value",
 }
-KNOWN_MISSING_COMPANION_TESTS = [
-    "us-ny/regulations/18-nycrr/385/3.yaml",
-    "us-ny/regulations/18-nycrr/387/10.yaml",
-    "us-ny/regulations/18-nycrr/387/12/a.yaml",
-    "us-ny/regulations/18-nycrr/387/12/b.yaml",
-    "us-ny/regulations/18-nycrr/387/9/a/1.yaml",
-    "us-ny/regulations/18-nycrr/387/9/a/2.yaml",
-    "us-sc/policies/dss/snap-policy-manual/page-398.yaml",
-]
+KNOWN_MISSING_COMPANION_TESTS: list[str] = []
 KNOWN_SHAPE_ISSUES = ["us-ca/regulations/mpp/63-406/1.yaml"]
 KNOWN_UNCOVERED_DERIVED_RULES = [
     "us/statutes/42/415/a.yaml#aime_in_first_pia_segment",
@@ -69,7 +61,6 @@ def allowed_yaml_roots() -> set[str]:
         ".axiom",
         ".github",
         "bulk",
-        "programs",
         "known-dangling.yaml",
         "known-missing-money-atoms.yaml",
         "known-validation-gaps.yaml",
@@ -147,6 +138,155 @@ def test_no_obsolete_formula_artifacts() -> None:
     assert obsolete == []
 
 
+def test_no_root_level_programs_directory() -> None:
+    assert not (ROOT / "programs").exists()
+
+
+def test_canonical_program_inventory_is_complete() -> None:
+    program_specs = {
+        path.relative_to(ROOT).as_posix()
+        for path in ROOT.glob("us*/programs/**/*.yaml")
+        if not path.name.endswith(".test.yaml")
+    }
+
+    assert program_specs == {
+        "us-ak/programs/tanf/fy-2026.yaml",
+        "us-al/programs/snap/fy-2026.yaml",
+        "us-al/programs/tanf/fy-2026.yaml",
+        "us-ar/programs/tanf/fy-2026.yaml",
+        "us-az/programs/snap/fy-2026.yaml",
+        "us-az/programs/tanf/fy-2026.yaml",
+        "us-ca/programs/snap/fy-2026.yaml",
+        "us-ca/programs/tanf/fy-2026.yaml",
+        "us-co/programs/snap/fy-2026.yaml",
+        "us-co/programs/tanf/fy-2026.yaml",
+        "us-ct/programs/tanf/fy-2026.yaml",
+        "us-de/programs/tanf/fy-2026.yaml",
+        "us-fl/programs/snap/fy-2026.yaml",
+        "us-fl/programs/tca/fy-2026.yaml",
+        "us-ga/programs/snap/fy-2026.yaml",
+        "us-ga/programs/tanf/fy-2026.yaml",
+        "us-il/programs/scretd/fy-2026.yaml",
+        "us-in/programs/tanf/fy-2026.yaml",
+        "us-ks/programs/tanf/fy-2026.yaml",
+        "us-ma/programs/snap/fy-2026.yaml",
+        "us-md/programs/tca/fy-2026.yaml",
+        "us-me/programs/tanf/fy-2026.yaml",
+        "us-nc/programs/snap/fy-2026.yaml",
+        "us-nh/programs/income-tax/fy-2026.yaml",
+        "us-ny/programs/income-tax/fy-2026.yaml",
+        "us-ny/programs/snap/fy-2026.yaml",
+        "us-ny/programs/tanf/fy-2026.yaml",
+        "us-sc/programs/snap/fy-2026.yaml",
+        "us-tn/programs/snap/fy-2026.yaml",
+        "us-tx/programs/tanf/fy-2026.yaml",
+        "us-ut/programs/tanf/fy-2026.yaml",
+        "us/programs/fiit/fy-2026.yaml",
+        "us/programs/payroll/oasdi-wage-tax/fy-2026.yaml",
+        "us/programs/us-tariff-duty/fy-2026.yaml",
+        "us/programs/us-tariff-schedule/ch01.yaml",
+        "us/programs/us-tariff-schedule/ch02.yaml",
+        "us/programs/us-tariff-schedule/ch03.yaml",
+        "us/programs/us-tariff-schedule/ch04.yaml",
+        "us/programs/us-tariff-schedule/ch05.yaml",
+        "us/programs/us-tariff-schedule/ch06.yaml",
+        "us/programs/us-tariff-schedule/ch07.yaml",
+        "us/programs/us-tariff-schedule/ch08.yaml",
+        "us/programs/us-tariff-schedule/ch09.yaml",
+        "us/programs/us-tariff-schedule/ch10.yaml",
+        "us/programs/us-tariff-schedule/ch11.yaml",
+        "us/programs/us-tariff-schedule/ch12.yaml",
+        "us/programs/us-tariff-schedule/ch13.yaml",
+        "us/programs/us-tariff-schedule/ch14.yaml",
+        "us/programs/us-tariff-schedule/ch15.yaml",
+        "us/programs/us-tariff-schedule/ch16.yaml",
+        "us/programs/us-tariff-schedule/ch17.yaml",
+        "us/programs/us-tariff-schedule/ch18.yaml",
+        "us/programs/us-tariff-schedule/ch19.yaml",
+        "us/programs/us-tariff-schedule/ch20.yaml",
+        "us/programs/us-tariff-schedule/ch21.yaml",
+        "us/programs/us-tariff-schedule/ch22.yaml",
+        "us/programs/us-tariff-schedule/ch23.yaml",
+        "us/programs/us-tariff-schedule/ch24.yaml",
+        "us/programs/us-tariff-schedule/ch25.yaml",
+        "us/programs/us-tariff-schedule/ch26.yaml",
+        "us/programs/us-tariff-schedule/ch27.yaml",
+        "us/programs/us-tariff-schedule/ch28.yaml",
+        "us/programs/us-tariff-schedule/ch29.yaml",
+        "us/programs/us-tariff-schedule/ch30.yaml",
+        "us/programs/us-tariff-schedule/ch31.yaml",
+        "us/programs/us-tariff-schedule/ch32.yaml",
+        "us/programs/us-tariff-schedule/ch33.yaml",
+        "us/programs/us-tariff-schedule/ch34.yaml",
+        "us/programs/us-tariff-schedule/ch35.yaml",
+        "us/programs/us-tariff-schedule/ch36.yaml",
+        "us/programs/us-tariff-schedule/ch37.yaml",
+        "us/programs/us-tariff-schedule/ch38.yaml",
+        "us/programs/us-tariff-schedule/ch39.yaml",
+        "us/programs/us-tariff-schedule/ch40.yaml",
+        "us/programs/us-tariff-schedule/ch41.yaml",
+        "us/programs/us-tariff-schedule/ch42.yaml",
+        "us/programs/us-tariff-schedule/ch43.yaml",
+        "us/programs/us-tariff-schedule/ch44.yaml",
+        "us/programs/us-tariff-schedule/ch45.yaml",
+        "us/programs/us-tariff-schedule/ch46.yaml",
+        "us/programs/us-tariff-schedule/ch47.yaml",
+        "us/programs/us-tariff-schedule/ch48.yaml",
+        "us/programs/us-tariff-schedule/ch49.yaml",
+        "us/programs/us-tariff-schedule/ch50.yaml",
+        "us/programs/us-tariff-schedule/ch51.yaml",
+        "us/programs/us-tariff-schedule/ch52.yaml",
+        "us/programs/us-tariff-schedule/ch53.yaml",
+        "us/programs/us-tariff-schedule/ch54.yaml",
+        "us/programs/us-tariff-schedule/ch55.yaml",
+        "us/programs/us-tariff-schedule/ch56.yaml",
+        "us/programs/us-tariff-schedule/ch57.yaml",
+        "us/programs/us-tariff-schedule/ch58.yaml",
+        "us/programs/us-tariff-schedule/ch59.yaml",
+        "us/programs/us-tariff-schedule/ch60.yaml",
+        "us/programs/us-tariff-schedule/ch61.yaml",
+        "us/programs/us-tariff-schedule/ch62.yaml",
+        "us/programs/us-tariff-schedule/ch63.yaml",
+        "us/programs/us-tariff-schedule/ch64.yaml",
+        "us/programs/us-tariff-schedule/ch65.yaml",
+        "us/programs/us-tariff-schedule/ch66.yaml",
+        "us/programs/us-tariff-schedule/ch67.yaml",
+        "us/programs/us-tariff-schedule/ch68.yaml",
+        "us/programs/us-tariff-schedule/ch69.yaml",
+        "us/programs/us-tariff-schedule/ch70.yaml",
+        "us/programs/us-tariff-schedule/ch71.yaml",
+        "us/programs/us-tariff-schedule/ch72.yaml",
+        "us/programs/us-tariff-schedule/ch73.yaml",
+        "us/programs/us-tariff-schedule/ch74.yaml",
+        "us/programs/us-tariff-schedule/ch75.yaml",
+        "us/programs/us-tariff-schedule/ch76.yaml",
+        "us/programs/us-tariff-schedule/ch78.yaml",
+        "us/programs/us-tariff-schedule/ch79.yaml",
+        "us/programs/us-tariff-schedule/ch80.yaml",
+        "us/programs/us-tariff-schedule/ch81.yaml",
+        "us/programs/us-tariff-schedule/ch82.yaml",
+        "us/programs/us-tariff-schedule/ch83.yaml",
+        "us/programs/us-tariff-schedule/ch84.yaml",
+        "us/programs/us-tariff-schedule/ch85.yaml",
+        "us/programs/us-tariff-schedule/ch86.yaml",
+        "us/programs/us-tariff-schedule/ch87.yaml",
+        "us/programs/us-tariff-schedule/ch88.yaml",
+        "us/programs/us-tariff-schedule/ch89.yaml",
+        "us/programs/us-tariff-schedule/ch90.yaml",
+        "us/programs/us-tariff-schedule/ch91.yaml",
+        "us/programs/us-tariff-schedule/ch92.yaml",
+        "us/programs/us-tariff-schedule/ch93.yaml",
+        "us/programs/us-tariff-schedule/ch94.yaml",
+        "us/programs/us-tariff-schedule/ch95.yaml",
+        "us/programs/us-tariff-schedule/ch96.yaml",
+        "us/programs/us-tariff-schedule/ch97.yaml",
+        "us/programs/us-tariff-schedule/ch98.yaml",
+        "us/programs/us-tariff-schedule/ch99a.yaml",
+        "us/programs/us-tariff-schedule/ch99b.yaml",
+        "us/programs/us-tariff-schedule/ch99c.yaml",
+    }
+
+
 def test_no_disallowed_roots_or_yaml_fixtures() -> None:
     singular_bases = [ROOT, *jurisdiction_dirs()]
     disallowed_roots = [
@@ -180,10 +320,6 @@ def test_rulespec_files_have_companion_tests() -> None:
         if not path.with_name(f"{path.stem}.test.yaml").exists()
     ]
 
-    # These seven modules have no executable rules, so [] companions are the
-    # repository idiom. The companions land with the canonical-provenance
-    # migration PR; this main-first schema change cannot touch jurisdiction
-    # content while the pinned generated guard is active.
     assert missing == KNOWN_MISSING_COMPANION_TESTS
 
 

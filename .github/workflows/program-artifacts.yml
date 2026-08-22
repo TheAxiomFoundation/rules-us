@@ -1,13 +1,16 @@
 name: program-artifacts
 
-# Compiles every programs/ spec through axiom-compose + axiom-rules-engine.
+# Compiles every jurisdiction programs/ spec through axiom-compose + axiom-rules-engine.
 #
 # Two decoupled jobs share this build:
 #
-# - On pull requests this is a GATE: any spec outside
+# - On pull requests targeting deployable main this is a GATE: any spec outside
 #   tools/known-broken-specs.txt that fails to compile fails the check, so
 #   spec/corpus drift is caught at PR time instead of at admission time. It
 #   publishes nothing and should never be a reason to disable the workflow.
+#   Migration staging branches retain frozen legacy paths that the
+#   canonical-only engine intentionally rejects; those PRs use the signed
+#   validation pipeline.
 # - Publishing is DELIBERATE: `workflow_dispatch` on main compiles and
 #   publishes the provenance-stamped artifacts and manifest as an immutable
 #   GitHub release, which downstream consumers (axiom-api) pin by tag +
@@ -22,6 +25,7 @@ name: program-artifacts
 
 on:
   pull_request:
+    branches: [main]
     paths:
       - "programs/**"
       - "tools/**"
@@ -34,6 +38,7 @@ on:
 
 jobs:
   build:
+    if: github.event_name != 'pull_request' || github.base_ref == 'main'
     runs-on: ubuntu-latest
     permissions:
       contents: read

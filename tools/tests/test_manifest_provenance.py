@@ -40,6 +40,24 @@ def test_validation_toolchain_absent_is_empty(tmp_path: Path):
     assert bpa.validation_toolchain(tmp_path) == {}
 
 
+def test_corpus_release_reads_pinned_identity_without_inventing_commit(tmp_path: Path):
+    axiom = tmp_path / ".axiom"
+    axiom.mkdir()
+    (axiom / "toolchain.toml").write_text(
+        "[toolchain]\n"
+        'axiom_corpus_release = "us-rulespec-snap-2026-07-21"\n'
+        'axiom_corpus_release_content_sha256 = "' + "d" * 64 + '"\n'
+    )
+    assert bpa.corpus_release(tmp_path) == {
+        "name": "us-rulespec-snap-2026-07-21",
+        "content_sha256": "d" * 64,
+    }
+
+
+def test_corpus_release_requires_complete_identity(tmp_path: Path):
+    assert bpa.corpus_release(tmp_path) is None
+
+
 def test_engine_build_sha_prefers_explicit_env(monkeypatch):
     monkeypatch.setenv("AXIOM_RULES_ENGINE_SHA", "deadbeefdeadbeefdeadbeefdeadbeefdeadbeef")
     assert bpa.engine_build_sha("/nonexistent/bin") == "deadbeefdeadbeefdeadbeefdeadbeefdeadbeef"
@@ -84,6 +102,7 @@ def test_build_compat_contract_shape_and_floor():
 
 def test_assemble_manifest_stamps_real_engine_sha_not_stale():
     toolchain = {"axiom_rules_engine_ref": "e19f1b75", "axiom_corpus_ref": "7661f3c9"}
+    release = {"name": "us-rulespec-snap-2026-07-21", "content_sha256": "d" * 64}
     m = bpa.assemble_manifest(
         programs=[{"program_id": "co-snap", "compat": bpa.build_compat("0.1.0", "cafef00dbabe", 2)}],
         corpus={"repo": "rulespec-us", "sha": "733d1a17", "dirty": False},
@@ -91,6 +110,7 @@ def test_assemble_manifest_stamps_real_engine_sha_not_stale():
         engine_version="0.1.0",
         engine_sha="cafef00dbabe",
         toolchain=toolchain,
+        release=release,
         artifact_schema=2,
     )
     # The BOM's key assertion: engine identity is a real sha, not the "0.1.0" string.
@@ -100,8 +120,7 @@ def test_assemble_manifest_stamps_real_engine_sha_not_stale():
     assert m["format_version"] == 1
     # Validation pins are labeled as validation, not build provenance.
     assert m["validation_toolchain"] == toolchain
-    # Release binding deferred (not invented).
-    assert m["corpus_release"] is None
+    assert m["corpus_release"] == release
     # The "corpus" field remains what actually composed (rulespec-us provenance).
     assert m["corpus"]["repo"] == "rulespec-us"
     json.loads(json.dumps(m))  # serializable
@@ -112,7 +131,7 @@ def test_manifest_and_program_compat_cannot_disagree():
     # SAME compat object; prove equality holds for a shared instance.
     compat = bpa.build_compat("0.1.0", "cafef00d", 2)
     program_entry = {"program_id": "co-snap", "compat": compat}
-    m = bpa.assemble_manifest([program_entry], {}, "0.1.0", "0.1.0", "cafef00d", {}, 2)
+    m = bpa.assemble_manifest([program_entry], {}, "0.1.0", "0.1.0", "cafef00d", {}, None, 2)
     assert m["programs"][0]["compat"] is compat
     assert m["programs"][0]["compat"]["built_by_engine"]["git_sha"] == "cafef00d"
 

@@ -48,7 +48,7 @@ TABLE_DIR = REPO_ROOT / "us/policies/usitc/us-tariff-duty/lines/generated"
 TABLE_MANIFEST_PATH = TABLE_DIR / "GENERATED-MANIFEST.json"
 TABLE_MANIFEST_SHA256 = "0ab7aa9d757661fd488893af038a70ebdd916c555304962b9f93badb0e711f77"
 COMPOSITION_DIR = REPO_ROOT / "us/policies/cbp/us-tariff-schedule/generated"
-PROGRAM_DIR = REPO_ROOT / "programs/us/us-tariff-schedule"
+PROGRAM_DIR = REPO_ROOT / "us/programs/us-tariff-schedule"
 TABLE_EFFECTIVE_FROM = "2025-01-01"
 WITNESS_EFFECTIVE_FROM = "2026-02-15"
 COMPANION_EFFECTIVE_DATE = "2026-08-01"
@@ -1186,7 +1186,7 @@ def relative_outputs(
         module = composition(chapter, witness, table)
         module_rel = Path(f"us/policies/cbp/us-tariff-schedule/generated/ch{chapter}/ch{chapter}.yaml")
         test_rel = Path(f"us/policies/cbp/us-tariff-schedule/generated/ch{chapter}/ch{chapter}.test.yaml")
-        program_rel = Path(f"programs/us/us-tariff-schedule/ch{chapter}.yaml")
+        program_rel = Path(f"us/programs/us-tariff-schedule/ch{chapter}.yaml")
         outputs[module_rel] = dump_yaml(module)
         outputs[test_rel] = companion_test(chapter, module, table)
         outputs[program_rel] = program_spec(
