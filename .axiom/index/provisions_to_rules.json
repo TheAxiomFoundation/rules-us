@@ -54307,6 +54307,15 @@
         ]
       }
     ],
+    "us/statute/42/19232/f": [
+      {
+        "module": "us/statutes/42/19232/f.yaml",
+        "via": [
+          "module",
+          "proof_atom"
+        ]
+      }
+    ],
     "us/statute/42/3535": [
       {
         "module": "us/statutes/42/3535.yaml",
