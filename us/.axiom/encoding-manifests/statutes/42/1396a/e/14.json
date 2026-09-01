@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "statutes/42/1396a/e/14.yaml",
-      "sha256": "17c6a72e09072273dfeda63802408c7154b760cd38d4e64b08c74121350d1250"
+      "sha256": "f4872b4595da986af60c5e9a9235911b36fa66cee1abad7ecc4d2ebe9e96e953"
     },
     {
       "path": "statutes/42/1396a/e/14.test.yaml",
-      "sha256": "2bc9d1a6055f3eb546d10e11782f4719f735a2218e9651acafd9e3d71d044cb9"
+      "sha256": "05464d49aea234efcd470b60346b3e256d30a83a1eae30e80db1808570b7a58e"
     }
   ],
   "axiom_encode_git": {
@@ -17,23 +17,27 @@
     "version_commit": "c618cf13820bebf8c3a2b0cd55fd0dc677d85dfb"
   },
   "axiom_encode_version": "0.2.890",
-  "backend": "codex",
+  "backend": "manual",
   "citation": "42 USC 1396a(e)(14)",
   "context_manifest_file": "/tmp/axiom-encode-encodings/_eval_workspaces/codex-gpt-5.5/42-USC-1396a-e-14/workspace/context-manifest.json",
   "context_manifest_sha256": "7783edbd9f28615c29045494352ea200f8bc66e1515f4c93c87e31dd04907f76",
-  "generated_at": "2026-06-27T03:43:38.199658+00:00",
+  "generated_at": "2026-09-01T21:53:02.691244+00:00",
   "generated_output_file": "/tmp/axiom-encode-encodings/codex-gpt-5.5/statutes/42/1396a/e/14.yaml",
   "generated_output_root": "/tmp/axiom-encode-encodings",
-  "generated_output_sha256": "17c6a72e09072273dfeda63802408c7154b760cd38d4e64b08c74121350d1250",
+  "generated_output_sha256": "f4872b4595da986af60c5e9a9235911b36fa66cee1abad7ecc4d2ebe9e96e953",
   "generation_prompt_sha256": "a555490c263b9431af2aa03ad710fc8bda52e7a52e072b2b35080db4f7e6765a",
-  "model": "gpt-5.5",
-  "run_id": "6baf65cb",
-  "runner": "codex-gpt-5.5",
+  "model": "",
+  "run_id": null,
+  "runner": "manual-attestation",
   "schema_version": "axiom-encode/applied-rulespec/v1",
-  "signature": {
-    "algorithm": "hmac-sha256",
-    "key_id": "axiom-encode-apply-v1",
-    "value": "d8b8e39cd9e3be8a528999d62683d24af306cfa81435139b295ebd193c8ce9a3"
+  "supersedes": {
+    "backend": "codex",
+    "generated_at": "2026-06-27T03:43:38.199658+00:00",
+    "generation_prompt_sha256": "a555490c263b9431af2aa03ad710fc8bda52e7a52e072b2b35080db4f7e6765a",
+    "manifest_sha256": "cfcd77c5666397267ffcbd09c6f4e4d07fe862c08f47fb6642715d9ca46bf6cb",
+    "prior_signature": "d8b8e39cd9e3be8a528999d62683d24af306cfa81435139b295ebd193c8ce9a3",
+    "run_id": "6baf65cb",
+    "supersedes": null
   },
   "tool": "axiom-encode encode --apply",
   "trace_file": "/tmp/axiom-encode-encodings/traces/codex-gpt-5.5/42-USC-1396a-e-14.json",

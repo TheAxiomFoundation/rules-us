@@ -227,13 +227,20 @@ rules:
         kind: exception
         source:
           corpus_citation_path: us/statute/42/1396a/e/14
-          excerpt: shall continue to be eligible ... denial ... would cause an undue
-            medical or financial hardship
+          excerpt: the denial of eligibility of the individual would cause an undue medical
+            or financial hardship
   versions:
   - effective_from: '2018-01-01'
     formula: 'income_exceeds_applicable_eligibility_threshold_by_application_of_lottery_lump_sum_rule
 
       and state_determines_denial_would_cause_undue_medical_or_financial_hardship'
+# Effective date of subparagraph (L), added by P.L. 119-21 section 71107
+# (rulespec-us#1320): redeterminations "scheduled on or after the first day
+# of the first quarter that begins after December 31, 2026". That quarter
+# begins January 1, 2027 (quarters start January 1, April 1, July 1,
+# October 1), so both (L) rules start 2027-01-01, not 2027-04-01. (L) is new
+# text with no pre-amendment counterpart: there is no earlier version to
+# retain, and the ACA-era rules above are separate symbols.
 - name: redetermination_interval_months_for_certain_adult_expansion_individuals
   kind: parameter
   dtype: Count
@@ -247,7 +254,7 @@ rules:
           corpus_citation_path: us/statute/42/1396a/e/14
           excerpt: once every 6 months
   versions:
-  - effective_from: '2027-04-01'
+  - effective_from: '2027-01-01'
     formula: '6'
 - name: six_month_redetermination_required
   kind: derived
@@ -264,8 +271,14 @@ rules:
           corpus_citation_path: us/statute/42/1396a/e/14
           excerpt: scheduled on or after the first day of the first quarter that begins
             after December 31, 2026
+      - path: versions[0].formula
+        kind: effective_period
+        source:
+          corpus_citation_path: us/statute/42/1396a/e/14
+          excerpt: scheduled on or after the first day of the first quarter that begins
+            after December 31, 2026
   versions:
-  - effective_from: '2027-04-01'
+  - effective_from: '2027-01-01'
     formula: 'redetermination_scheduled_on_or_after_applicable_start_date
 
       and state_is_one_of_50_states_or_district_of_columbia

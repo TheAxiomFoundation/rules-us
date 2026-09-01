@@ -47,3 +47,14 @@
     us:statutes/42/1396a/e/14#input.individual_exempt_under_subsection_xx_9_A_ii_II: false
   output:
     us:statutes/42/1396a/e/14#six_month_redetermination_required: holds
+- name: six_month_redetermination_required_from_first_quarter_of_2027
+  period: 2027-01
+  input:
+    us:statutes/42/1396a/e/14#input.redetermination_scheduled_on_or_after_applicable_start_date: true
+    us:statutes/42/1396a/e/14#input.state_is_one_of_50_states_or_district_of_columbia: true
+    us:statutes/42/1396a/e/14#input.enrolled_under_adult_expansion_group: true
+    us:statutes/42/1396a/e/14#input.enrolled_under_equivalent_minimum_essential_coverage_waiver_for_adult_expansion_group: false
+    us:statutes/42/1396a/e/14#input.individual_exempt_under_subsection_xx_9_A_ii_II: false
+  output:
+    us:statutes/42/1396a/e/14#six_month_redetermination_required: holds
+    us:statutes/42/1396a/e/14#redetermination_interval_months_for_certain_adult_expansion_individuals: 6
