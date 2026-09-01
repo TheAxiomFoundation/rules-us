@@ -576,3 +576,20 @@
   output:
     us:regulations/7-cfr/273/24#snap_member_abawd_exception_applies: holds
     us:regulations/7-cfr/273/24#snap_member_abawd_time_limit_inapplicable: holds
+# Version history of the upper age bound (rulespec-us#1310): the Fiscal
+# Responsibility Act band (55 and older excepted) is retained for
+# 2024-10-01 through 2025-07-03 and the post-P.L. 119-21 band (65) applies
+# from 2025-07-04. Only the parameter is asserted for June 2025: the derived
+# exception rule carries no version before 2025-07-04 (a second derived
+# version is blocked by axiom-rules-engine#133), so the pre-enactment
+# judgment stays unresolved rather than answering with the new criteria.
+- name: abawd_upper_age_bound_fra_era_june_2025
+  period: 2025-06
+  input: {}
+  output:
+    us:regulations/7-cfr/273/24#snap_member_abawd_exception_applies_scalar_limit_2: 55
+- name: abawd_upper_age_bound_post_hr1
+  period: 2026-07
+  input: {}
+  output:
+    us:regulations/7-cfr/273/24#snap_member_abawd_exception_applies_scalar_limit_2: 65

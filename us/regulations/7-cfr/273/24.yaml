@@ -59,6 +59,11 @@ module:
         cited only for what the statute text does not settle: the operational
         reading of "under 18, or over 65" as ages 18-64 subject with 65 and
         older excepted, and the upon-enactment July 4, 2025 effective date.
+        The unconformed eCFR text is cited for exactly one thing: the
+        superseded Fiscal Responsibility Act upper age bound ("Under 18 or
+        55 years of age or older") retained as a closed version through
+        2025-07-03, so the amendment history of that parameter is encoded
+        rather than deleted.
 imports:
 - us:regulations/7-cfr/273/7
 rules:
@@ -139,32 +144,68 @@ rules:
   versions:
   - effective_from: '2025-07-04'
     formula: '18'
-# Upper age bound of the post-P.L. 119-21 exception. The enacted text reads
-# "under 18, or over 65, years of age"; read literally, "over 65" would leave
-# age exactly 65 subject. USDA operationalizes the band as ages 18-64 subject
-# and 65 and older excepted (FNS OBBBA ABAWD exceptions implementation
-# memorandum, 2025-10-03, page 1), and this encoding follows the USDA
-# operational reading: member_age >= 65 excepts. The memorandum, not the
-# statutory phrase, is the authority for the inclusive boundary.
+# Upper age bound of the exception, in two versions (rulespec-us#1310):
+#
+# versions[0] - the Fiscal Responsibility Act of 2023 (P.L. 118-5 section
+# 311) band as the still-unconformed regulation text reads it: "Under 18 or
+# 55 years of age or older" (7 CFR 273.24(c)(1)), i.e. ages 18-54 subject
+# ("individuals aged 18 to 54 were subject to the ABAWD time limit", FNS
+# OBBBA ABAWD exceptions implementation memorandum, page 1). The 55 step
+# took effect October 1, 2024 under FRA section 311; the earlier steps (51
+# from 2023-09-01, 53 from 2023-10-01) have no provision in the corpus and
+# are not encoded, so months before 2024-10-01 stay unresolved. The version
+# closes 2025-07-03, the day before P.L. 119-21 section 10102(a) struck the
+# paragraph. The engine selects a version by period start, so the July 2025
+# Month period still resolves this parameter to 55; the derived rules below
+# carry no version before 2025-07-04, so no exception judgment resolves to
+# the repealed criteria (us-ca MPP 63-410.321 chose 2025-06-30 for the same
+# reason at the judgment level).
+#
+# versions[1] - the post-P.L. 119-21 band. The enacted text reads "under 18,
+# or over 65, years of age"; read literally, "over 65" would leave age
+# exactly 65 subject. USDA operationalizes the band as ages 18-64 subject
+# and 65 and older excepted (memorandum page 1), and this encoding follows
+# the USDA operational reading: member_age >= 65 excepts. The memorandum,
+# not the statutory phrase, is the authority for the inclusive boundary.
 - name: snap_member_abawd_exception_applies_scalar_limit_2
   kind: parameter
   dtype: Count
-  source: 7 U.S.C. 2015(o)(3)(A) as amended by P.L. 119-21 section 10102(a) and FNS OBBBA ABAWD exceptions implementation memorandum (2025-10-03)
+  source: 7 CFR 273.24(c)(1) through 2025-07-03; 7 U.S.C. 2015(o)(3)(A) as amended by P.L. 119-21 section 10102(a) and FNS OBBBA ABAWD exceptions implementation memorandum (2025-10-03) from 2025-07-04
   metadata:
     proof:
       atoms:
       - path: versions[0].formula
         kind: parameter
         source:
-          corpus_citation_path: us/statute/7/2015/o/3
-          excerpt: under 18, or over 65, years of age
+          corpus_citation_path: us/regulation/7/273/24
+          excerpt: Under 18 or 55 years of age or older
       - path: versions[0].formula
         kind: parameter
         source:
           corpus_citation_path: us/guidance/usda/fns/snap-obbb-abawd-exceptions-implementation-memo/page-1
+          excerpt: individuals aged 18 to 54 were subject to the ABAWD time limit
+      - path: versions[1].formula
+        kind: parameter
+        source:
+          corpus_citation_path: us/statute/7/2015/o/3
+          excerpt: under 18, or over 65, years of age
+      - path: versions[1].formula
+        kind: parameter
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-abawd-exceptions-implementation-memo/page-1
           excerpt: Therefore, individuals aged 18 to 64 are now subject to the time limit, unless they meet another exception.
+      - path: versions[1].formula
+        kind: effective_period
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-abawd-exceptions-implementation-memo/page-4
+          excerpt: These changes were effective upon enactment, July 4, 2025.
   versions:
+  - effective_from: '2024-10-01'
+    effective_to: '2025-07-03'
+    source: 7 CFR 273.24(c)(1) (Fiscal Responsibility Act of 2023, P.L. 118-5 section 311; 55-and-older band in force from October 1, 2024)
+    formula: '55'
   - effective_from: '2025-07-04'
+    source: 7 U.S.C. 2015(o)(3)(A) as amended by P.L. 119-21 section 10102(a)
     formula: '65'
 - name: snap_member_abawd_exception_dependent_child_age_scalar_limit
   kind: parameter
