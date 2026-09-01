@@ -28,6 +28,14 @@ rules:
         - TaxUnit
         - Person
 
+  # (h)(2) has carried two amounts. P.L. 115-97 section 11022(a) (TCJA) wrote
+  # "$2,000" for taxable years beginning after December 31, 2017; P.L. 119-21
+  # section 70104(a)(2) struck "$2,000" and inserted "$2,200", applicable to
+  # taxable years beginning after December 31, 2024 (section 70104(f)). The
+  # subsection's own opening date (2018-01-01) is NOT the effective date of
+  # the amended amount. The corpus serves current text only, so the
+  # pre-amendment value is attested by the amending act rather than by a
+  # live excerpt (rulespec-us#1319).
   - name: ctc_child_amount_under_subsection_h
     kind: parameter
     dtype: Money
@@ -40,9 +48,25 @@ rules:
             kind: amount
             source:
               corpus_citation_path: us/statute/26/24
-              text: Subsection (a) shall be applied by substituting "$2,200" for "$1,000".
+              text: >-
+                Pre-amendment (h)(2), as enacted by P.L. 115-97 section 11022(a):
+                Subsection (a) shall be applied by substituting "$2,000" for
+                "$1,000". Struck by P.L. 119-21 section 70104(a)(2) ("by striking
+                '$2,000' and inserting '$2,200'"), applicable to taxable years
+                beginning after December 31, 2024 (section 70104(f)).
+          - path: versions[1].formula
+            kind: amount
+            source:
+              corpus_citation_path: us/statute/26/24
+              excerpt: Subsection (a) shall be applied by substituting “$2,200” for “$1,000”.
     versions:
       - effective_from: '2018-01-01'
+        effective_to: '2024-12-31'
+        source: 26 USC 24(h)(2) as enacted by P.L. 115-97 section 11022(a)
+        formula: |-
+          2000
+      - effective_from: '2025-01-01'
+        source: 26 USC 24(h)(2) as amended by P.L. 119-21 section 70104(a)(2)
         formula: |-
           2200
 
@@ -136,6 +160,14 @@ rules:
         formula: |-
           2500
 
+  # (h)(7) was rewritten by P.L. 119-21 section 70104(b), applicable to taxable
+  # years beginning after December 31, 2024: the credit now also requires the
+  # taxpayer's (or one spouse's) social security number. The pre-amendment
+  # paragraph (P.L. 115-97) required only the qualifying child's number. That
+  # earlier logic cannot be retained as a second version of a derived rule
+  # until axiom-rules-engine#133 lands, so this rule starts at 2025-01-01 and
+  # taxable years 2018-2024 stay unresolved rather than answering with the
+  # post-amendment test (rulespec-us#1319).
   - name: ctc_child_ssn_requirement_satisfied_under_subsection_h
     kind: derived
     entity: Person
@@ -156,7 +188,8 @@ rules:
               corpus_citation_path: us/statute/26/24
               text: social security number means a social security number issued to an individual by the Social Security Administration, but only if issued to a citizen of the United States or pursuant to the cited Social Security Act provisions and before the due date for such return
     versions:
-      - effective_from: '2018-01-01'
+      - effective_from: '2025-01-01'
+        source: 26 USC 24(h)(7) as amended by P.L. 119-21 section 70104(b)
         formula: |-
           taxpayer_or_spouse_ssn_included_on_return
           and qualifying_child_ssn_included_on_return

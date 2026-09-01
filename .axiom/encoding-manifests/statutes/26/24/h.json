@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "statutes/26/24/h.yaml",
-      "sha256": "80d253ad020aaf460588e169963b2d126ea532359124436c2905c343b7dbc103"
+      "sha256": "b7526dc526900ad5e85bc856989d091c7d2520eaf02216a7e332f2b618f640cf"
     },
     {
       "path": "statutes/26/24/h.test.yaml",
-      "sha256": "e8d675c81ca3ba3af2ee45e57013381c59ecea8a1fa7605796f4cac6728faf42"
+      "sha256": "5db290c1a4304d612a972b706acfea7ec58d39ea138c5fed103cec010ca6a4b1"
     }
   ],
   "axiom_encode_git": {
@@ -15,23 +15,27 @@
     "root": "/Users/maxghenis/TheAxiomFoundation/axiom-encode"
   },
   "axiom_encode_version": "0.2.68",
-  "backend": "deterministic",
+  "backend": "manual",
   "citation": "26 USC 24(h)",
   "context_manifest_file": "/tmp/axiom-encode-24h-clean-apply-5/_eval_workspaces/openai-gpt-5.5/26-USC-24-h/workspace/context-manifest.json",
   "context_manifest_sha256": "23e8a931aaea4275fa0edf6dbd528f2a756883681f48b2261bca822ae536afbb",
-  "generated_at": "2026-05-20T18:26:46.497380+00:00",
+  "generated_at": "2026-09-01T21:52:06.149485+00:00",
   "generated_output_file": "/tmp/axiom-encode-24h-clean-apply-5/openai-gpt-5.5/statutes/26/24/h.yaml",
   "generated_output_root": "/tmp/axiom-encode-24h-clean-apply-5",
-  "generated_output_sha256": "6589226170a8d201d0b5e035f00ac12530f7043ed31779cb3c1cbdb553a23fd9",
+  "generated_output_sha256": "b7526dc526900ad5e85bc856989d091c7d2520eaf02216a7e332f2b618f640cf",
   "generation_prompt_sha256": "a7d6d7738f7add1dc07064c6838921deb55f20130d2b388cb92f28b73039ea18",
-  "model": "manual-repair-v1",
-  "run_id": "deterministic-repair",
-  "runner": "deterministic-repair",
+  "model": "",
+  "run_id": null,
+  "runner": "manual-attestation",
   "schema_version": "axiom-encode/applied-rulespec/v1",
-  "signature": {
-    "algorithm": "hmac-sha256",
-    "key_id": "axiom-encode-apply-v1",
-    "value": "0cbeb9aaae706e9ce459c75f9b908877e91ea2357fc0aa17e390cb7324b44f5d"
+  "supersedes": {
+    "backend": "deterministic",
+    "generated_at": "2026-05-20T18:26:46.497380+00:00",
+    "generation_prompt_sha256": "a7d6d7738f7add1dc07064c6838921deb55f20130d2b388cb92f28b73039ea18",
+    "manifest_sha256": "583690e8535e7b6ff43e1e90558f2a56f2618c58d5620d6ba73a14989d34cb78",
+    "prior_signature": "0cbeb9aaae706e9ce459c75f9b908877e91ea2357fc0aa17e390cb7324b44f5d",
+    "run_id": "deterministic-repair",
+    "supersedes": null
   },
   "tool": "axiom-encode deterministic/manual repair",
   "trace_file": "/tmp/axiom-encode-24h-clean-apply-5/traces/openai-gpt-5.5/26-USC-24-h.json",
