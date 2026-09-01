@@ -102,7 +102,7 @@ rules:
             import:
               target: us:regulations/7-cfr/273/24#snap_member_abawd_time_limit_eligible
               output: snap_member_abawd_time_limit_eligible
-              hash: sha256:089c5b53ea87db26e71d7e24bb63331b561a12d35ae303fd1d154170837e88ec
+              hash: sha256:380030d6f724c002d45dd33aeb5d1899d9f5d03b2eb7f9d73867e1a8a34e523d
     versions:
       - effective_from: '2008-10-01'
         formula: |-

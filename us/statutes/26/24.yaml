@@ -427,7 +427,7 @@ rules:
             import:
               target: us:statutes/26/24/h#ctc_phase_out_threshold_under_subsection_h
               output: ctc_phase_out_threshold_under_subsection_h
-              hash: sha256:80d253ad020aaf460588e169963b2d126ea532359124436c2905c343b7dbc103
+              hash: sha256:b7526dc526900ad5e85bc856989d091c7d2520eaf02216a7e332f2b618f640cf
     versions:
       - effective_from: '2018-01-01'
         formula: |-
@@ -456,7 +456,7 @@ rules:
             import:
               target: us:statutes/26/24/h#ctc_maximum_before_phase_out_under_subsection_h
               output: ctc_maximum_before_phase_out_under_subsection_h
-              hash: sha256:80d253ad020aaf460588e169963b2d126ea532359124436c2905c343b7dbc103
+              hash: sha256:b7526dc526900ad5e85bc856989d091c7d2520eaf02216a7e332f2b618f640cf
     versions:
       - effective_from: '2018-01-01'
         formula: |-

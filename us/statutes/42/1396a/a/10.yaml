@@ -501,7 +501,7 @@ rules:
             import:
               target: us:statutes/42/1396a/xx#demonstrated_community_engagement_for_month
               output: demonstrated_community_engagement_for_month
-              hash: sha256:48ae645b26d1e6987bbf379424d1a96db6871830473d4671eb786cc3fad6c75c
+              hash: sha256:0849267981ace8d3077ab6168137b9fc2c3a98c478fb718ce4f56a85c355ebed
           - path: versions[0].formula
             kind: import
             import:
