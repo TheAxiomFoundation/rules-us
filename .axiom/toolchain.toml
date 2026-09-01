@@ -1,4 +1,4 @@
 [toolchain]
 axiom_corpus_release = "us-rulespec-2026-08-08-obbb-alien-snap"
 axiom_corpus_release_content_sha256 = "0d69a0cdbe024fc2276f3c261c00402bb0a47488ac5f482cc20bd3404980adbc"
-validation_waiver_set_sha256 = "55eb2c090f19806a4401e43fbad60250900a5e4f30dfbafbd2e41927c7596f38"
+validation_waiver_set_sha256 = "967815adede0ce291f65a0d64f35d34165de5319978432837b8653a37f9f9ce6"
