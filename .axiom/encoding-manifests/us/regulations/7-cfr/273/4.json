@@ -1,0 +1,100 @@
+{
+  "applied_files": [
+    {
+      "path": "us/regulations/7-cfr/273/4.yaml",
+      "sha256": "51e5e852cdb46a07e06bf908526bb31296af0e50dce27ab9c7266799bfeed4f8"
+    },
+    {
+      "path": "us/regulations/7-cfr/273/4.test.yaml",
+      "sha256": "b700042c1f73aae8af58e4d6b90e18ffedf351fcdeafceaf3bc95d4b2710f9e1"
+    },
+    {
+      "path": "us/policies/usda/snap/state-plan-composition.test.yaml",
+      "sha256": "7c076ab917dc198bed41367b2d3f1b9b646d4595ff9069a5229e3b4c6b73d864"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "f87ba011d0f9227ab5ad4bf65a4b12f57e0ab82a",
+    "dirty_tracked": false,
+    "identity_source": "trusted-runtime-attestation",
+    "root": "/opt/axiom-verification/python/runtime-attestation.json",
+    "version": "0.2.1755",
+    "version_commit": "f87ba011d0f9227ab5ad4bf65a4b12f57e0ab82a"
+  },
+  "axiom_encode_version": "0.2.1755",
+  "backend": "openai",
+  "citation": "us/regulation/7/273/4",
+  "context_manifest_file": "/home/runner/work/_temp/generated/target/_eval_workspaces/openai-gpt-5.6-terra/us-regulation-7-273-4/workspace/context-manifest.json",
+  "context_manifest_sha256": "c1b0ecaa38c400ce2dd805d00c151ce606bdde5cd1045d41bbec97bf3f39dd72",
+  "generated_at": "2026-09-02T13:19:59.002891+00:00",
+  "generated_output_file": "/home/runner/work/_temp/generated/target/openai-gpt-5.6-terra/regulations/7-cfr/273/4.yaml",
+  "generated_output_root": "/home/runner/work/_temp/generated/target",
+  "generated_output_sha256": "51e5e852cdb46a07e06bf908526bb31296af0e50dce27ab9c7266799bfeed4f8",
+  "generation_prompt_sha256": "d2f06b93258c701fb32da3c87681f41ac8213d5b9a0726761a606b638423e8db",
+  "model": "gpt-5.6-terra",
+  "run_id": "3734a8ea",
+  "runner": "openai-gpt-5.6-terra",
+  "schema_version": "axiom-encode/applied-rulespec/v5",
+  "signature": {
+    "algorithm": "ed25519-domain-v1",
+    "key_id": "sha256:24a78725a23b1c83cfc38bdc22f75401d8008e7a8477796b55179d1fc79c4d9a",
+    "value": "Ph/d5udTwoCU+8lki+2/Iwky4SqDU0cZkTzxqaBLS8QzcUrTwEBnfL8CoZg3qMK6FxC566eFLUKSasDvqjC0CQ=="
+  },
+  "source_attestation": {
+    "component_rows": [],
+    "corpus_release": "us-rulespec-2026-08-08-obbb-alien-snap",
+    "corpus_release_content_sha256": "0d69a0cdbe024fc2276f3c261c00402bb0a47488ac5f482cc20bd3404980adbc",
+    "corpus_release_selector_sha256": "1b88863f0e6f09c3383e0572666da892d49125f34bda5088bd90a6706d8b37fd",
+    "corpus_source": "local",
+    "expression_date": "2026-04-29",
+    "generation_input_sha256": "846140bd0e210be0f69a81dc1006c3914c81b0dd7faebedcdd978be7526601b3",
+    "provision_file": "data/corpus/provisions/us/regulation/2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained.jsonl",
+    "provision_file_sha256": "de25d2b32f261e92405a553f65dfc90b47b032a4d1a80b1b585857b7fd342d1e",
+    "requested_corpus_citation_path": "us/regulation/7/273/4",
+    "resolved_corpus_citation_path": "us/regulation/7/273/4",
+    "resolved_text_sha256": "846140bd0e210be0f69a81dc1006c3914c81b0dd7faebedcdd978be7526601b3",
+    "row": {
+      "body_sha256": "846140bd0e210be0f69a81dc1006c3914c81b0dd7faebedcdd978be7526601b3",
+      "citation_path": "us/regulation/7/273/4",
+      "document_class": "regulation",
+      "expression_date": "2026-04-29",
+      "jurisdiction": "us",
+      "line_number": 9,
+      "provision_file": "data/corpus/provisions/us/regulation/2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained.jsonl",
+      "provision_file_sha256": "de25d2b32f261e92405a553f65dfc90b47b032a4d1a80b1b585857b7fd342d1e",
+      "record_id": "3c7f0bf5-cc4e-5a8b-b1fd-2ee868a41be8",
+      "source_as_of": "2026-04-29",
+      "source_path": "sources/us/regulation/2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained/official-documents/release-scope-us-regulation-2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained",
+      "version": "2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained"
+    },
+    "rulespec_root": "rulespec-us/us",
+    "source_as_of": "2026-04-29",
+    "source_sha256": "846140bd0e210be0f69a81dc1006c3914c81b0dd7faebedcdd978be7526601b3"
+  },
+  "tool": "axiom-encode encode --apply",
+  "trace_file": "/home/runner/work/_temp/generated/target/traces/openai-gpt-5.6-terra/us-regulation-7-273-4.json",
+  "trace_sha256": "88f4b186a04d7d0dc4baa98b637f3a007662e3020db72710821653f067e8fd2a",
+  "validation_execution": {
+    "axiom_encode": {
+      "commit": "f87ba011d0f9227ab5ad4bf65a4b12f57e0ab82a",
+      "identity_source": "trusted-runtime-attestation",
+      "repository": "github.com/TheAxiomFoundation/axiom-encode",
+      "version": "0.2.1755"
+    },
+    "axiom_rules_engine": {
+      "commit": "48797e101c093bb388be718c6f5d8fc9d9f94a7d",
+      "repository": "github.com/TheAxiomFoundation/axiom-rules-engine"
+    },
+    "policy_pre_apply": {
+      "pre_apply_content_sha256": "4ce7179f88633d1c403cb756f801a236d6a014a84cff4d2c39edabe4f4d62669",
+      "pre_apply_file_count": 2713,
+      "rulespec_root": "rulespec-us/us",
+      "toolchain_contract_sha256": "7f3da0d315d84fa75257e6f07e6351d2f550da156474dadf4ae8a10c28a186af",
+      "validation_waiver_set_sha256": "55eb2c090f19806a4401e43fbad60250900a5e4f30dfbafbd2e41927c7596f38"
+    },
+    "rulespec_dependencies": [],
+    "rulespec_scope": "active_jurisdiction_and_country_ancestors",
+    "schema": "axiom-encode/apply-validation-execution/v2"
+  },
+  "validation_waiver_set_sha256": "55eb2c090f19806a4401e43fbad60250900a5e4f30dfbafbd2e41927c7596f38"
+}
