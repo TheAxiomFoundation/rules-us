@@ -1,0 +1,448 @@
+- name: citizen_resident_satisfies_participation_status_requirements
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+  output:
+    us:statutes/7/2015/f#united_states_residence_requirement_satisfied: holds
+    us:statutes/7/2015/f#citizen_or_national_status_satisfies_paragraph_2: holds
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: not_holds
+- name: resident_without_qualifying_status_has_full_income_and_resources_considered
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    us:statutes/7/2015/f#input.state_elects_pro_rata_share_reduction_for_ineligible_individual_income: false
+    us:statutes/7/2015/f#input.ineligible_individual_income: 100
+    us:statutes/7/2015/f#input.pro_rata_share_of_ineligible_individual_income: 25
+    us:statutes/7/2015/f#input.ineligible_individual_financial_resources: 60
+  output:
+    us:statutes/7/2015/f#united_states_residence_requirement_satisfied: holds
+    us:statutes/7/2015/f#citizen_or_national_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: not_holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: holds
+    us:statutes/7/2015/f#ineligible_individual_income_considered_for_household_snap_determination: 100
+    us:statutes/7/2015/f#ineligible_individual_financial_resources_considered_for_household_snap_determination: 60
+- name: nonresident_permanent_resident_has_prorated_income_considered
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: true
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    us:statutes/7/2015/f#input.state_elects_pro_rata_share_reduction_for_ineligible_individual_income: true
+    us:statutes/7/2015/f#input.ineligible_individual_income: 100
+    us:statutes/7/2015/f#input.pro_rata_share_of_ineligible_individual_income: 25
+    us:statutes/7/2015/f#input.ineligible_individual_financial_resources: 60
+  output:
+    us:statutes/7/2015/f#united_states_residence_requirement_satisfied: not_holds
+    us:statutes/7/2015/f#citizen_or_national_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: holds
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: holds
+    us:statutes/7/2015/f#ineligible_individual_income_considered_for_household_snap_determination: 75
+    us:statutes/7/2015/f#ineligible_individual_financial_resources_considered_for_household_snap_determination: 60
+- name: temporary_visitor_cannot_satisfy_permanent_resident_branch
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: true
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : true
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+  output:
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: not_holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: holds
+- name: cuban_and_haitian_entrant_satisfies_paragraph_2
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: true
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+  output:
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: not_holds
+- name: compact_of_free_association_resident_satisfies_paragraph_2
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: true
+  output:
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: not_holds
+- name: member_outside_otherwise_eligible_household_is_not_rendered_ineligible
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: false
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+  output:
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: not_holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: not_holds
+- name: citizen_resident_is_not_ineligible_under_subsection
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#united_states_residence_requirement_satisfied: holds
+    us:statutes/7/2015/f#citizen_or_national_status_satisfies_paragraph_2: holds
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: not_holds
+- name: resident_without_qualifying_status_is_ineligible_without_proration
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    us:statutes/7/2015/f#input.state_elects_pro_rata_share_reduction_for_ineligible_individual_income: false
+    us:statutes/7/2015/f#input.ineligible_individual_income: 100
+    us:statutes/7/2015/f#input.pro_rata_share_of_ineligible_individual_income: 25
+    us:statutes/7/2015/f#input.ineligible_individual_financial_resources: 60
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#united_states_residence_requirement_satisfied: holds
+    us:statutes/7/2015/f#citizen_or_national_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: not_holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: holds
+    us:statutes/7/2015/f#ineligible_individual_income_considered_for_household_snap_determination: 100
+    us:statutes/7/2015/f#ineligible_individual_financial_resources_considered_for_household_snap_determination: 60
+- name: nonresident_permanent_resident_is_ineligible_with_proration
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: true
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    us:statutes/7/2015/f#input.state_elects_pro_rata_share_reduction_for_ineligible_individual_income: true
+    us:statutes/7/2015/f#input.ineligible_individual_income: 100
+    us:statutes/7/2015/f#input.pro_rata_share_of_ineligible_individual_income: 25
+    us:statutes/7/2015/f#input.ineligible_individual_financial_resources: 60
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#united_states_residence_requirement_satisfied: not_holds
+    us:statutes/7/2015/f#citizen_or_national_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: holds
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: holds
+    us:statutes/7/2015/f#ineligible_individual_income_considered_for_household_snap_determination: 75
+    us:statutes/7/2015/f#ineligible_individual_financial_resources_considered_for_household_snap_determination: 60
+- name: cuban_and_haitian_entrant_resident_has_qualifying_status
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: true
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#united_states_residence_requirement_satisfied: holds
+    us:statutes/7/2015/f#citizen_or_national_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: holds
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: not_holds
+- name: compact_of_free_association_resident_has_qualifying_status
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: true
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#united_states_residence_requirement_satisfied: holds
+    us:statutes/7/2015/f#citizen_or_national_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: not_holds
+- name: person_outside_otherwise_eligible_household_is_not_rendered_ineligible
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: false
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#united_states_residence_requirement_satisfied: holds
+    us:statutes/7/2015/f#citizen_or_national_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: not_holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: not_holds
+- name: resident_without_qualifying_status_is_ineligible
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#united_states_residence_requirement_satisfied: holds
+    us:statutes/7/2015/f#citizen_or_national_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: not_holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: holds
+- name: person_not_in_otherwise_eligible_household_is_not_rendered_ineligible_by_this_subsection
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: false
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#united_states_residence_requirement_satisfied: holds
+    us:statutes/7/2015/f#citizen_or_national_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: not_holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: not_holds
+- name: citizen_resident_satisfies_both_numbered_requirements
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#united_states_residence_requirement_satisfied: holds
+    us:statutes/7/2015/f#citizen_or_national_status_satisfies_paragraph_2: holds
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: not_holds
+- name: permanent_resident_nonresident_is_ineligible_with_pro_rata_income
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: true
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    us:statutes/7/2015/f#input.state_elects_pro_rata_share_reduction_for_ineligible_individual_income: true
+    us:statutes/7/2015/f#input.ineligible_individual_income: 100
+    us:statutes/7/2015/f#input.pro_rata_share_of_ineligible_individual_income: 25
+    us:statutes/7/2015/f#input.ineligible_individual_financial_resources: 60
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#united_states_residence_requirement_satisfied: not_holds
+    us:statutes/7/2015/f#citizen_or_national_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: holds
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: holds
+    us:statutes/7/2015/f#ineligible_individual_income_considered_for_household_snap_determination: 75
+    us:statutes/7/2015/f#ineligible_individual_financial_resources_considered_for_household_snap_determination: 60
+- name: compact_resident_has_qualifying_status
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: true
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#united_states_residence_requirement_satisfied: holds
+    us:statutes/7/2015/f#citizen_or_national_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: not_holds
+- name: resident_without_paragraph_2_status_is_ineligible_without_pro_rata_reduction
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    us:statutes/7/2015/f#input.state_elects_pro_rata_share_reduction_for_ineligible_individual_income: false
+    us:statutes/7/2015/f#input.ineligible_individual_income: 100
+    us:statutes/7/2015/f#input.pro_rata_share_of_ineligible_individual_income: 25
+    us:statutes/7/2015/f#input.ineligible_individual_financial_resources: 60
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#united_states_residence_requirement_satisfied: holds
+    us:statutes/7/2015/f#citizen_or_national_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#permanent_resident_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#cuban_and_haitian_entrant_status_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#compact_of_free_association_residence_satisfies_paragraph_2: not_holds
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: not_holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: holds
+    us:statutes/7/2015/f#ineligible_individual_income_considered_for_household_snap_determination: 100
+    us:statutes/7/2015/f#ineligible_individual_financial_resources_considered_for_household_snap_determination: 60
+- name: permanent_resident_is_eligible_and_income_is_reduced_by_elected_pro_rata_share
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: true
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    us:statutes/7/2015/f#input.state_elects_pro_rata_share_reduction_for_ineligible_individual_income: true
+    us:statutes/7/2015/f#input.ineligible_individual_income: 100
+    us:statutes/7/2015/f#input.pro_rata_share_of_ineligible_individual_income: 25
+    us:statutes/7/2015/f#input.ineligible_individual_financial_resources: 60
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: not_holds
+    us:statutes/7/2015/f#ineligible_individual_income_considered_for_household_snap_determination: 0
+    us:statutes/7/2015/f#ineligible_individual_financial_resources_considered_for_household_snap_determination: 0
+- name: nonresident_permanent_resident_is_ineligible_and_pro_rata_income_is_considered
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: true
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    us:statutes/7/2015/f#input.state_elects_pro_rata_share_reduction_for_ineligible_individual_income: true
+    us:statutes/7/2015/f#input.ineligible_individual_income: 100
+    us:statutes/7/2015/f#input.pro_rata_share_of_ineligible_individual_income: 25
+    us:statutes/7/2015/f#input.ineligible_individual_financial_resources: 60
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: holds
+    us:statutes/7/2015/f#ineligible_individual_income_considered_for_household_snap_determination: 75
+    us:statutes/7/2015/f#ineligible_individual_financial_resources_considered_for_household_snap_determination: 60
+- name: citizen_or_national_has_qualifying_status
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: false
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: not_holds
+- name: cuban_and_haitian_entrant_has_qualifying_status
+  period: 2026-01
+  input:
+    us:statutes/7/2015/f#input.person_is_member_of_household_otherwise_eligible_to_participate_under_this_section: true
+    us:statutes/7/2015/f#input.person_is_resident_of_united_states: true
+    us:statutes/7/2015/f#input.person_is_citizen_or_national_of_united_states: false
+    us:statutes/7/2015/f#input.person_is_alien_lawfully_admitted_for_permanent_residence_as_immigrant: false
+    us:statutes/7/2015/f#input.person_has_status_of_cuban_and_haitian_entrant: true
+    us:statutes/7/2015/f#input.person_lawfully_resides_in_united_states_under_compact_of_free_association: false
+    ? us:statutes/7/2015/f#input.person_is_alien_visitor_tourist_diplomat_or_student_entering_temporarily_without_intention_to_abandon_foreign_residence
+    : false
+  output:
+    us:statutes/7/2015/f#person_has_qualifying_snap_alien_or_citizenship_status: holds
+    us:statutes/7/2015/f#person_ineligible_for_snap_participation_due_to_alien_status: not_holds
