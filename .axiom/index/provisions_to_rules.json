@@ -35962,6 +35962,15 @@
         ]
       }
     ],
+    "us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo": [
+      {
+        "module": "us/policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo.yaml",
+        "via": [
+          "module",
+          "proof_atom"
+        ]
+      }
+    ],
     "us/policy/cms/chip-spa/al/al-24-0031-fcep-and-al-24-0031-absc/pdf/page-2": [
       {
         "module": "us-al/policies/cms/alabama-chip-eligibility.yaml",
@@ -37268,7 +37277,8 @@
       {
         "module": "us/regulations/7-cfr/273/4.yaml",
         "via": [
-          "module"
+          "module",
+          "proof_atom"
         ]
       }
     ],
@@ -54893,6 +54903,15 @@
     "us/statute/7/2015/d/2": [
       {
         "module": "us/regulations/7-cfr/273/7.yaml",
+        "via": [
+          "module",
+          "proof_atom"
+        ]
+      }
+    ],
+    "us/statute/7/2015/f": [
+      {
+        "module": "us/statutes/7/2015/f.yaml",
         "via": [
           "module",
           "proof_atom"
