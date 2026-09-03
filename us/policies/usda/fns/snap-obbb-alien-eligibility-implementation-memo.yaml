@@ -1,0 +1,532 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+    source_sha256: 0be8e3e6891999b0f1e4a6dca6dc459063797d22a7b8f9fd5a8294213b7d655c
+  summary: '“Section 10108 of the OBBB amends section 6(f) of the Food and Nutrition
+    Act of 2008 (FNA), limiting eligibility for SNAP to the following groups: U.S.
+    citizens, U.S. nationals, lawful permanent residents (LPRs), Cuban and Haitian
+    entrants, and Compact of Free Association (COFA) citizens.” LPRs generally have
+    a 5-year waiting period, subject to listed exceptions. Section 10108 was effective
+    July 4, 2025; the memorandum also addresses recertification, overissuance claims,
+    and the 120-day quality-control variance exclusion.'
+rules:
+- name: trafficking_victim_or_family_member_may_use_post_obbb_lpr_eligibility_path
+  kind: derived
+  entity: Family
+  dtype: Judgment
+  period: Month
+  source: Attachment 1, page 7
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: Victims of Severe Trafficking and Certain Family Members Eligible
+            immediately Not eligible unless an LPR.
+  versions:
+  - effective_from: '2025-07-04'
+    formula: 'person_is_victim_of_severe_trafficking_or_certain_family_member
+
+      and person_is_lawful_permanent_resident'
+- name: lpr_waiting_period_years
+  kind: parameter
+  dtype: Integer
+  period: Year
+  source: SNAP Alien Eligibility, page 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: Eligible after a 5-year waiting period
+  versions:
+  - effective_from: '2025-07-04'
+    formula: '5'
+- name: lpr_qualifying_work_quarters_threshold
+  kind: parameter
+  dtype: Count
+  period: Month
+  source: SNAP Alien Eligibility, page 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: Have 40 qualifying work quarters
+  versions:
+  - effective_from: '2025-07-04'
+    formula: '40'
+- name: qc_variance_exclusion_period_days
+  kind: parameter
+  dtype: Count
+  period: Day
+  source: Quality Control and Technical Assistance, pages 3-4
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: A 120-day variance exclusion is permitted
+  versions:
+  - effective_from: '2025-07-04'
+    formula: '120'
+- name: person_is_in_obbb_permitted_alien_group
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: SNAP Alien Eligibility, pages 1-2; Attachment 1, pages 5-8
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: limiting eligibility for SNAP to the following groups
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: Post-OBBB SNAP eligible alien groups are U.S. nationals, lawful
+            permanent residents (LPRs), Cuban and Haitian entrants (CHEs), and Compacts
+            of Free Association (COFA) citizens.
+  versions:
+  - effective_from: '2025-07-04'
+    formula: 'person_is_non_citizen_us_national
+
+      or person_is_cuban_or_haitian_entrant
+
+      or person_is_cofa_citizen
+
+      or person_is_lawful_permanent_resident'
+- name: lpr_waiting_period_exception_applies
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: SNAP Alien Eligibility, page 2; Attachment 1, pages 5-7
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: exception
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: LPRs may still be eligible for SNAP without a waiting period if
+            they meet one or more of the following conditions
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: Are under 18 years old
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: Were lawfully residing in the U.S. and 65 or older on August 22,
+            1996
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: Are admitted to the United States as an Amerasian immigrant
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: Are an American Indian born abroad
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: Certain Hmong or Highland Laotian tribal members
+  versions:
+  - effective_from: '2025-07-04'
+    formula: "person_is_lawful_permanent_resident\nand (\n  lpr_is_under_18\n  or\
+      \ lpr_qualifying_work_quarters >= lpr_qualifying_work_quarters_threshold\n \
+      \ or lpr_is_blind_or_disabled\n  or lpr_was_lawfully_residing_and_older_on_prwora_enactment_date\n\
+      \  or lpr_has_us_military_connection\n  or lpr_is_admitted_as_amerasian_immigrant\n\
+      \  or lpr_is_american_indian_born_abroad\n  or lpr_is_hmong_or_highland_laotian_tribal_member\n\
+      )"
+- name: person_is_snap_eligible_under_obbb_alien_rules
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: SNAP Alien Eligibility, pages 1-2; Attachment 1, pages 5-8
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: Eligible immediately, with no waiting period, as long as they meet
+            all other SNAP financial and non-financial eligibility requirements.
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: Eligible after a 5-year waiting period
+  versions:
+  - effective_from: '2025-07-04'
+    formula: "person_meets_other_snap_financial_and_nonfinancial_requirements\nand\
+      \ (\n  person_is_non_citizen_us_national\n  or person_is_cuban_or_haitian_entrant\n\
+      \  or person_is_cofa_citizen\n  or (\n    person_is_lawful_permanent_resident\n\
+      \    and (\n      years_since_lpr_status >= lpr_waiting_period_years\n     \
+      \ or lpr_waiting_period_exception_applies\n    )\n  )\n)"
+- name: alien_must_be_removed_from_household_at_recertification
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: Implementation, page 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: apply these policies at recertification
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: the alien is no longer eligible for SNAP and must be removed from
+            the household at that time
+  versions:
+  - effective_from: '2025-07-04'
+    formula: 'household_is_at_recertification
+
+      and not person_is_in_obbb_permitted_alien_group'
+- name: alien_not_subject_to_overissuance_claim_for_post_change_benefits
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: Implementation, page 3, footnote 4
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: exception
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: aliens who lose SNAP eligibility at recertification due to the
+            OBBB SNAP eligibility changes, are not subject to a claim for over issuance
+            for the benefits received after the OBBB changes took effect
+  versions:
+  - effective_from: '2025-07-04'
+    formula: 'alien_loses_snap_eligibility_at_recertification_due_to_obbb_changes
+
+      and benefits_were_received_after_obbb_changes_took_effect'
+- name: qc_variance_exclusion_applies
+  kind: derived
+  entity: StateAgency
+  dtype: Judgment
+  period: Month
+  source: Quality Control and Technical Assistance, pages 3-4
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: effective_period
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: A 120-day variance exclusion is permitted for the misapplication
+            of changes in Section 10108 of the OBBB to new and ongoing SNAP households
+            until the exclusionary period end date on November 1, 2025.
+      - path: versions[0].formula
+        kind: exception
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: The 120-day variance exclusion period will not apply if the State
+            agency does not implement the new provision in accordance with 7 CFR 275.12(d)(2)(vii)(D).
+  versions:
+  - effective_from: '2025-07-04'
+    formula: 'section_10108_is_misapplied
+
+      and misapplication_is_within_qc_variance_exclusion_period
+
+      and state_implements_new_provision_in_accordance_with_7_cfr_275_12_d_2_vii_d'
+- name: lpr_exception_minimum_condition_count
+  kind: parameter
+  dtype: Count
+  period: Month
+  source: SNAP Alien Eligibility, page 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: meet one or more of the following conditions
+  versions:
+  - effective_from: '2025-07-04'
+    formula: '1'
+- name: prwora_waiting_period_footnote_marker
+  kind: parameter
+  dtype: Integer
+  period: Month
+  source: SNAP Alien Eligibility, page 2, footnote 3
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: 3 See 8 USC 1612.
+  versions:
+  - effective_from: '2025-07-04'
+    formula: '3'
+- name: overissuance_claim_footnote_marker
+  kind: parameter
+  dtype: Integer
+  period: Month
+  source: Implementation, page 3, footnote 4
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: 4 Pursuant to USDA regulations
+  versions:
+  - effective_from: '2025-07-04'
+    formula: '4'
+- name: ina_footnote_marker
+  kind: parameter
+  dtype: Integer
+  period: Month
+  source: Attachment 1, page 8, footnote 6
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: 6 Immigration and Nationality Act.
+  versions:
+  - effective_from: '2025-07-04'
+    formula: '6'
+- name: lpr_section_249_description_footnote_marker
+  kind: parameter
+  dtype: Integer
+  period: Month
+  source: Attachment 1, page 8, footnote 7
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: 7 Status acquired after any type of entry
+  versions:
+  - effective_from: '2025-07-04'
+    formula: '7'
+- name: immigration_code_title_number
+  kind: parameter
+  dtype: Integer
+  period: Month
+  source: SNAP Alien Eligibility, page 1
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: 2 Aliens who were qualified aliens as defined by section 431 of
+            the Personal Responsibility and Work Opportunity Reconciliation Act (PRWORA)
+            (8 USC 1641) and aliens included in section 402(a) of PRWORA (8 USC 1612(a))
+            in addition to groups listed in section 6(f) of the FNA were eligible
+            for SNAP.
+  versions:
+  - effective_from: '2025-07-04'
+    formula: '8'
+- name: lpr_under_age_threshold
+  kind: parameter
+  dtype: Count
+  period: Month
+  source: SNAP Alien Eligibility, page 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: Are under 18 years old
+  versions:
+  - effective_from: '2025-07-04'
+    formula: '18'
+- name: older_lpr_age_threshold
+  kind: parameter
+  dtype: Count
+  period: Month
+  source: SNAP Alien Eligibility, page 2
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: 65 or older on August 22, 1996
+  versions:
+  - effective_from: '2025-07-04'
+    formula: '65'
+- name: conditional_entrant_may_use_post_obbb_lpr_eligibility_path
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: Attachment 1, page 7
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: Conditional Entrants Eligible immediately Not eligible unless an
+            LPR.
+  versions:
+  - effective_from: '2025-07-04'
+    formula: 'person_is_conditional_entrant
+
+      and person_is_lawful_permanent_resident'
+- name: battered_alien_may_use_post_obbb_lpr_eligibility_path
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: Attachment 1, page 7
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: us/guidance/usda/fns/snap-obbb-alien-eligibility-implementation-memo
+          excerpt: Battered Aliens Eligible immediately Not eligible unless an LPR.
+  versions:
+  - effective_from: '2025-07-04'
+    formula: 'person_is_battered_alien
+
+      and person_is_lawful_permanent_resident'
+inputs:
+- name: person_is_non_citizen_us_national
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: person_is_cuban_or_haitian_entrant
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: person_is_cofa_citizen
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: person_is_lawful_permanent_resident
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: years_since_lpr_status
+  entity: Person
+  dtype: Decimal
+  period: Month
+- name: lpr_is_under_18
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: lpr_qualifying_work_quarters
+  entity: Person
+  dtype: Count
+  period: Month
+- name: lpr_is_blind_or_disabled
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: lpr_has_us_military_connection
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: lpr_is_admitted_as_amerasian_immigrant
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: lpr_is_american_indian_born_abroad
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: lpr_is_hmong_or_highland_laotian_tribal_member
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: person_meets_other_snap_financial_and_nonfinancial_requirements
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: household_is_at_recertification
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: alien_loses_snap_eligibility_at_recertification_due_to_obbb_changes
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: benefits_were_received_after_obbb_changes_took_effect
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: section_10108_is_misapplied
+  entity: StateAgency
+  dtype: Boolean
+  period: Month
+- name: misapplication_is_within_qc_variance_exclusion_period
+  entity: StateAgency
+  dtype: Boolean
+  period: Month
+- name: state_implements_new_provision_in_accordance_with_7_cfr_275_12_d_2_vii_d
+  entity: StateAgency
+  dtype: Boolean
+  period: Month
+- name: person_is_conditional_entrant
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: person_is_battered_alien
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: person_is_victim_of_severe_trafficking_or_certain_family_member
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: state_implemented_before_variance_exclusion_end_date
+  entity: StateAgency
+  dtype: Boolean
+  period: Month

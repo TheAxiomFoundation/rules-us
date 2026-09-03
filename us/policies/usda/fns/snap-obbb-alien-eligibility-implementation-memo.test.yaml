@@ -1,0 +1,912 @@
+- name: lpr_waiting_period_exception_does_not_apply
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: not_holds
+- name: qc_variance_exclusion_blocked_by_late_implementation
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.section_10108_is_misapplied: true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.misapplication_is_within_qc_variance_exclusion_period
+    : true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.state_implements_new_provision_in_accordance_with_7_cfr_275_12_d_2_vii_d
+    : false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#qc_variance_exclusion_applies: not_holds
+- name: qc_variance_exclusion_does_not_apply_after_period
+  period: 2025-11
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.section_10108_is_misapplied: true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.misapplication_is_within_qc_variance_exclusion_period
+    : false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.state_implements_new_provision_in_accordance_with_7_cfr_275_12_d_2_vii_d
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#qc_variance_exclusion_applies: not_holds
+- name: lpr_under_18_exception_applies
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+- name: lpr_qualifying_work_quarters_exception_applies
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 40
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+- name: lpr_blind_or_disabled_exception_applies
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+- name: lpr_older_lawful_resident_exception_applies
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+- name: lpr_military_connection_exception_applies
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+- name: lpr_amerasian_exception_applies
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+- name: lpr_american_indian_exception_applies
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+- name: lpr_hmong_or_highland_laotian_exception_applies
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+- name: non_citizen_us_national_is_eligible_immediately
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: not_holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: holds
+- name: lpr_under_18_is_eligible_without_waiting_period
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: holds
+- name: non_permitted_alien_must_be_removed_at_recertification
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.household_is_at_recertification: true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: not_holds
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_must_be_removed_from_household_at_recertification
+    : holds
+- name: qc_variance_exclusion_requires_timely_compliant_implementation
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.section_10108_is_misapplied: true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.misapplication_is_within_qc_variance_exclusion_period
+    : true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.state_implements_new_provision_in_accordance_with_7_cfr_275_12_d_2_vii_d
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#qc_variance_exclusion_applies: holds
+- name: lpr_is_eligible_after_waiting_period
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 5
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: not_holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: holds
+- name: non_permitted_alien_is_removed_at_recertification
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.household_is_at_recertification: true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: not_holds
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_must_be_removed_from_household_at_recertification
+    : holds
+- name: no_overissuance_claim_for_post_change_benefits
+  period: 2025-08
+  input:
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.alien_loses_snap_eligibility_at_recertification_due_to_obbb_changes
+    : true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.benefits_were_received_after_obbb_changes_took_effect
+    : true
+  output:
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_not_subject_to_overissuance_claim_for_post_change_benefits
+    : holds
+- name: qc_variance_exclusion_all_conditions_hold
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.section_10108_is_misapplied: true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.misapplication_is_within_qc_variance_exclusion_period
+    : true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.state_implements_new_provision_in_accordance_with_7_cfr_275_12_d_2_vii_d
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#qc_variance_exclusion_applies: holds
+- name: qc_variance_exclusion_blocked_without_required_implementation
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.section_10108_is_misapplied: true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.misapplication_is_within_qc_variance_exclusion_period
+    : true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.state_implements_new_provision_in_accordance_with_7_cfr_275_12_d_2_vii_d
+    : false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#qc_variance_exclusion_applies: not_holds
+- name: qc_variance_exclusion_control
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.section_10108_is_misapplied: true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.misapplication_is_within_qc_variance_exclusion_period
+    : true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.state_implements_new_provision_in_accordance_with_7_cfr_275_12_d_2_vii_d
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#qc_variance_exclusion_applies: holds
+- name: qc_variance_exclusion_applies_within_period
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.section_10108_is_misapplied: true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.misapplication_is_within_qc_variance_exclusion_period
+    : true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.state_implements_new_provision_in_accordance_with_7_cfr_275_12_d_2_vii_d
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#qc_variance_exclusion_applies: holds
+- name: qc_variance_exclusion_blocked_without_misapplication
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.section_10108_is_misapplied: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.misapplication_is_within_qc_variance_exclusion_period
+    : true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.state_implements_new_provision_in_accordance_with_7_cfr_275_12_d_2_vii_d
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#qc_variance_exclusion_applies: not_holds
+- name: qc_variance_exclusion_blocked_outside_period
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.section_10108_is_misapplied: true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.misapplication_is_within_qc_variance_exclusion_period
+    : false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.state_implements_new_provision_in_accordance_with_7_cfr_275_12_d_2_vii_d
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#qc_variance_exclusion_applies: not_holds
+- name: no_overissuance_claim_rule_blocked_without_obbb_recertification_loss
+  period: 2025-08
+  input:
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.alien_loses_snap_eligibility_at_recertification_due_to_obbb_changes
+    : false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.benefits_were_received_after_obbb_changes_took_effect
+    : true
+  output:
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_not_subject_to_overissuance_claim_for_post_change_benefits
+    : not_holds
+- name: no_overissuance_claim_rule_blocked_for_pre_change_benefits
+  period: 2025-08
+  input:
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.alien_loses_snap_eligibility_at_recertification_due_to_obbb_changes
+    : true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.benefits_were_received_after_obbb_changes_took_effect
+    : false
+  output:
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_not_subject_to_overissuance_claim_for_post_change_benefits
+    : not_holds
+- name: conditional_entrant_with_lpr_status_may_use_lpr_path
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_conditional_entrant: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+  output:
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#conditional_entrant_may_use_post_obbb_lpr_eligibility_path
+    : holds
+- name: conditional_entrant_without_lpr_status_cannot_use_lpr_path
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_conditional_entrant: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: false
+  output:
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#conditional_entrant_may_use_post_obbb_lpr_eligibility_path
+    : not_holds
+- name: battered_alien_with_lpr_status_may_use_lpr_path
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_battered_alien: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#battered_alien_may_use_post_obbb_lpr_eligibility_path: holds
+- name: battered_alien_without_lpr_status_cannot_use_lpr_path
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_battered_alien: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#battered_alien_may_use_post_obbb_lpr_eligibility_path: not_holds
+- name: trafficking_victim_or_family_member_with_lpr_status_may_use_lpr_path
+  period: 2025-08
+  input:
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_victim_of_severe_trafficking_or_certain_family_member
+    : true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+  output:
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#trafficking_victim_or_family_member_may_use_post_obbb_lpr_eligibility_path
+    : holds
+- name: trafficking_victim_or_family_member_without_lpr_status_cannot_use_lpr_path
+  period: 2025-08
+  input:
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_victim_of_severe_trafficking_or_certain_family_member
+    : true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: false
+  output:
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#trafficking_victim_or_family_member_may_use_post_obbb_lpr_eligibility_path
+    : not_holds
+- name: lpr_under_age_exception_control
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: not_holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: not_holds
+- name: lpr_under_age_exception_applies
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: holds
+- name: lpr_work_quarters_exception_control
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: not_holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: not_holds
+- name: lpr_work_quarters_exception_applies
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 40
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: holds
+- name: lpr_blind_or_disabled_exception_control
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: not_holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: not_holds
+- name: lpr_older_lawful_resident_exception_control
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: not_holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: not_holds
+- name: lpr_military_connection_exception_control
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: not_holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: not_holds
+- name: lpr_amerasian_exception_control
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: not_holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: not_holds
+- name: lpr_american_indian_exception_control
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: not_holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: not_holds
+- name: lpr_hmong_or_highland_laotian_exception_control
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: not_holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: not_holds
+- name: cuban_or_haitian_entrant_is_eligible_immediately
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.household_is_at_recertification: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: not_holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: holds
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_must_be_removed_from_household_at_recertification
+    : not_holds
+- name: cofa_citizen_is_eligible_immediately
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.household_is_at_recertification: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: not_holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: holds
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_must_be_removed_from_household_at_recertification
+    : not_holds
+- name: lpr_under_18_is_exempt_from_waiting_period
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.household_is_at_recertification: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: holds
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_must_be_removed_from_household_at_recertification
+    : not_holds
+- name: lpr_with_qualifying_work_quarters_is_exempt
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 40
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.household_is_at_recertification: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: holds
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_must_be_removed_from_household_at_recertification
+    : not_holds
+- name: blind_or_disabled_lpr_is_exempt
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.household_is_at_recertification: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: holds
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_must_be_removed_from_household_at_recertification
+    : not_holds
+- name: older_lawfully_residing_lpr_is_exempt
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.household_is_at_recertification: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: holds
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_must_be_removed_from_household_at_recertification
+    : not_holds
+- name: lpr_with_military_connection_is_exempt
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.household_is_at_recertification: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: holds
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_must_be_removed_from_household_at_recertification
+    : not_holds
+- name: amerasian_lpr_is_exempt
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.household_is_at_recertification: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: holds
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_must_be_removed_from_household_at_recertification
+    : not_holds
+- name: american_indian_lpr_is_exempt
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.household_is_at_recertification: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: holds
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_must_be_removed_from_household_at_recertification
+    : not_holds
+- name: hmong_or_highland_laotian_lpr_is_exempt
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: true
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.household_is_at_recertification: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: holds
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_must_be_removed_from_household_at_recertification
+    : not_holds
+- name: permitted_alien_fails_other_snap_requirements
+  period: 2025-08
+  input:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_non_citizen_us_national: true
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cuban_or_haitian_entrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_cofa_citizen: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_is_lawful_permanent_resident: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.years_since_lpr_status: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_under_18: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_qualifying_work_quarters: 0
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_blind_or_disabled: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_was_lawfully_residing_and_older_on_prwora_enactment_date
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_has_us_military_connection: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_admitted_as_amerasian_immigrant: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_american_indian_born_abroad: false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.lpr_is_hmong_or_highland_laotian_tribal_member: false
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.person_meets_other_snap_financial_and_nonfinancial_requirements
+    : false
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#input.household_is_at_recertification: false
+  output:
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_in_obbb_permitted_alien_group: holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#lpr_waiting_period_exception_applies: not_holds
+    us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#person_is_snap_eligible_under_obbb_alien_rules: not_holds
+    ? us:policies/usda/fns/snap-obbb-alien-eligibility-implementation-memo#alien_must_be_removed_from_household_at_recertification
+    : not_holds
