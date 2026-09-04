@@ -54899,6 +54899,15 @@
         ]
       }
     ],
+    "us/statute/7/2015/f": [
+      {
+        "module": "us/statutes/7/2015/f.yaml",
+        "via": [
+          "module",
+          "proof_atom"
+        ]
+      }
+    ],
     "us/statute/7/2015/o/3": [
       {
         "module": "us-ca/regulations/mpp/63-410/321.yaml",
