@@ -64,9 +64,7 @@
       us:regulations/7-cfr/273/24#input.snap_abawd_countable_months_in_three_year_period: 0
       us:regulations/7-cfr/273/24#input.member_regained_abawd_eligibility: false
       us:regulations/7-cfr/273/24#input.member_has_additional_three_month_abawd_eligibility: false
-      us:regulations/7-cfr/273/4#input.member_is_american_indian_born_in_canada_or_recognized_indian_tribe_member: false
       us:regulations/7-cfr/273/4#input.member_is_hmong_or_highland_laotian_qualifying_person_or_family_member: false
-      us:regulations/7-cfr/273/4#input.member_is_trafficking_victim_or_qualifying_family_member: false
       us:regulations/7-cfr/273/4#input.member_is_qualified_alien_with_forty_qualifying_quarters: false
       us:regulations/7-cfr/273/4#input.member_is_refugee: false
       us:regulations/7-cfr/273/4#input.member_is_asylee: false
@@ -140,9 +138,7 @@
     us:regulations/7-cfr/273/24#input.snap_abawd_countable_months_in_three_year_period: 0
     us:regulations/7-cfr/273/24#input.member_regained_abawd_eligibility: false
     us:regulations/7-cfr/273/24#input.member_has_additional_three_month_abawd_eligibility: false
-    us:regulations/7-cfr/273/4#input.member_is_american_indian_born_in_canada_or_recognized_indian_tribe_member: false
     us:regulations/7-cfr/273/4#input.member_is_hmong_or_highland_laotian_qualifying_person_or_family_member: false
-    us:regulations/7-cfr/273/4#input.member_is_trafficking_victim_or_qualifying_family_member: false
     us:regulations/7-cfr/273/4#input.member_is_qualified_alien_with_forty_qualifying_quarters: false
     us:regulations/7-cfr/273/4#input.member_is_refugee: false
     us:regulations/7-cfr/273/4#input.member_is_asylee: false
@@ -317,9 +313,7 @@
       us:regulations/7-cfr/273/24#input.snap_abawd_countable_months_in_three_year_period: 0
       us:regulations/7-cfr/273/24#input.member_regained_abawd_eligibility: false
       us:regulations/7-cfr/273/24#input.member_has_additional_three_month_abawd_eligibility: false
-      us:regulations/7-cfr/273/4#input.member_is_american_indian_born_in_canada_or_recognized_indian_tribe_member: false
       us:regulations/7-cfr/273/4#input.member_is_hmong_or_highland_laotian_qualifying_person_or_family_member: false
-      us:regulations/7-cfr/273/4#input.member_is_trafficking_victim_or_qualifying_family_member: false
       us:regulations/7-cfr/273/4#input.member_is_qualified_alien_with_forty_qualifying_quarters: false
       us:regulations/7-cfr/273/4#input.member_is_refugee: false
       us:regulations/7-cfr/273/4#input.member_is_asylee: false
@@ -404,9 +398,7 @@
       us:regulations/7-cfr/273/24#input.snap_abawd_countable_months_in_three_year_period: 0
       us:regulations/7-cfr/273/24#input.member_regained_abawd_eligibility: false
       us:regulations/7-cfr/273/24#input.member_has_additional_three_month_abawd_eligibility: false
-      us:regulations/7-cfr/273/4#input.member_is_american_indian_born_in_canada_or_recognized_indian_tribe_member: false
       us:regulations/7-cfr/273/4#input.member_is_hmong_or_highland_laotian_qualifying_person_or_family_member: false
-      us:regulations/7-cfr/273/4#input.member_is_trafficking_victim_or_qualifying_family_member: false
       us:regulations/7-cfr/273/4#input.member_is_qualified_alien_with_forty_qualifying_quarters: false
       us:regulations/7-cfr/273/4#input.member_is_refugee: false
       us:regulations/7-cfr/273/4#input.member_is_asylee: false
