@@ -1,0 +1,286 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: us/statute/7/2015/f
+    source_sha256: 239cc65999d115055d13b7b3a72ef1a4c83da4fdbab9ab71d0ea33536d2b96c2
+  summary: “No individual who is a member of a household otherwise eligible to participate”
+    may participate unless the individual is “a resident of the United States” and
+    is a citizen or national, lawful permanent resident immigrant, Cuban and Haitian
+    entrant, or COFA resident. “The income (less, at State option, a pro rata share)
+    and financial resources” of an individual rendered ineligible shall be considered.
+rules:
+- name: ineligible_person_income_amount_considered
+  kind: derived
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  source: 7 U.S.C. 2015(f)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+          excerpt: The income (less, at State option, a pro rata share) and financial
+            resources of the individual rendered ineligible
+      - path: versions[0].effective_from
+        kind: effective_period
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+  versions:
+  - effective_from: '2025-07-04'
+    formula: 'if person_ineligible_for_snap_participation_due_to_alien_status: max(0,
+      person_income - state_option_pro_rata_share_of_person_income) else: 0'
+- name: person_meets_snap_residency_requirement
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: 7 U.S.C. 2015(f)(1)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+          excerpt: a resident of the United States
+      - path: versions[0].effective_from
+        kind: effective_period
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+  versions:
+  - effective_from: '2025-07-04'
+    formula: person_is_resident_of_united_states
+- name: person_is_snap_citizen_or_national
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: 7 U.S.C. 2015(f)(2)(A)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: definition
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+          excerpt: a citizen or national of the United States
+      - path: versions[0].effective_from
+        kind: effective_period
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+  versions:
+  - effective_from: '2025-07-04'
+    formula: person_is_citizen_or_national_of_united_states
+- name: person_is_snap_lawful_permanent_resident_immigrant
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: 7 U.S.C. 2015(f)(2)(B)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: definition
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+          excerpt: an alien lawfully admitted for permanent residence as an immigrant
+      - path: versions[0].effective_from
+        kind: effective_period
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+  versions:
+  - effective_from: '2025-07-04'
+    formula: person_is_lawfully_admitted_for_permanent_residence_as_immigrant
+- name: person_is_snap_cuban_and_haitian_entrant
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: 7 U.S.C. 2015(f)(2)(C)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: definition
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+          excerpt: an alien who has been granted the status of Cuban and Haitian entrant
+      - path: versions[0].effective_from
+        kind: effective_period
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+  versions:
+  - effective_from: '2025-07-04'
+    formula: person_has_been_granted_status_of_cuban_and_haitian_entrant
+- name: person_is_snap_compact_of_free_association_resident
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: 7 U.S.C. 2015(f)(2)(D)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: definition
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+          excerpt: lawfully resides in the United States in accordance with a Compact
+            of Free Association
+      - path: versions[0].effective_from
+        kind: effective_period
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+  versions:
+  - effective_from: '2025-07-04'
+    formula: person_lawfully_resides_in_united_states_in_accordance_with_compact_of_free_association
+- name: person_has_qualifying_snap_alien_or_citizenship_status
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: 7 U.S.C. 2015(f)(2)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: definition
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+          excerpt: either— (A) a citizen or national of the United States
+      - path: versions[0].formula
+        kind: definition
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+          excerpt: (B) an alien lawfully admitted for permanent residence as an immigrant
+      - path: versions[0].formula
+        kind: definition
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+          excerpt: (C) an alien who has been granted the status of Cuban and Haitian
+            entrant
+      - path: versions[0].formula
+        kind: definition
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+          excerpt: (D) an individual who lawfully resides in the United States in
+            accordance with a Compact of Free Association
+      - path: versions[0].effective_from
+        kind: effective_period
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+  versions:
+  - effective_from: '2025-07-04'
+    formula: 'person_is_snap_citizen_or_national
+
+      or person_is_snap_lawful_permanent_resident_immigrant
+
+      or person_is_snap_cuban_and_haitian_entrant
+
+      or person_is_snap_compact_of_free_association_resident'
+- name: person_ineligible_for_snap_participation_due_to_alien_status
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: 7 U.S.C. 2015(f)(1)-(2)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+          excerpt: No individual who is a member of a household otherwise eligible
+            to participate
+      - path: versions[0].formula
+        kind: exception
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+          excerpt: unless he or she is— (1) a resident of the United States; and (2)
+            either—
+      - path: versions[0].effective_from
+        kind: effective_period
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+  versions:
+  - effective_from: '2025-07-04'
+    formula: 'person_is_member_of_household_otherwise_eligible_to_participate_under_this_section
+
+      and
+
+      (not person_meets_snap_residency_requirement
+
+      or not person_has_qualifying_snap_alien_or_citizenship_status)'
+- name: ineligible_person_financial_resources_amount_considered
+  kind: derived
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  source: 7 U.S.C. 2015(f)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+          excerpt: financial resources of the individual rendered ineligible to participate
+            in the supplemental nutrition assistance program under this subsection
+            shall be considered
+      - path: versions[0].effective_from
+        kind: effective_period
+        source:
+          corpus_citation_path: us/statute/7/2015/f
+  versions:
+  - effective_from: '2025-07-04'
+    formula: 'if person_ineligible_for_snap_participation_due_to_alien_status: max(0,
+      person_financial_resources) else: 0'
+inputs:
+- name: person_is_member_of_household_otherwise_eligible_to_participate_under_this_section
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: person_is_resident_of_united_states
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: person_is_citizen_or_national_of_united_states
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: person_is_lawfully_admitted_for_permanent_residence_as_immigrant
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: person_has_been_granted_status_of_cuban_and_haitian_entrant
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: person_lawfully_resides_in_united_states_in_accordance_with_compact_of_free_association
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: person_income
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+- name: state_option_pro_rata_share_of_person_income
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+- name: person_financial_resources
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
