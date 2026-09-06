@@ -176,6 +176,11 @@ validate_failures:  # https://github.com/TheAxiomFoundation/rulespec-us/issues/3
       owner: "@MaxGhenis"
       issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/1080"
       expires: "2026-11-14"
+    pending:
+      fingerprint: "sha256:e47a94a570ef8872d9e3b509dfce01c3a4fe2cf6da4332f0cfef1a7158aff153"
+      owner: "@MaxGhenis"
+      issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/1080"
+      expires: "2026-11-14"
   "us/policies/cbp/us-tariff-schedule/generated/ch30/ch30.yaml":
     active:
       fingerprint: "sha256:ffac5f443078d85f0a56e6993be7be5c12205a7ef93f44ad726f6e223500a23b"
@@ -488,6 +493,11 @@ validate_failures:  # https://github.com/TheAxiomFoundation/rulespec-us/issues/3
       owner: "@MaxGhenis"
       issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/1080"
       expires: "2026-11-14"
+    pending:
+      fingerprint: "sha256:1ff0eb0bf44c2323d3ac1c526e56371394327b29f7fca822c7aa46eb605b73f8"
+      owner: "@MaxGhenis"
+      issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/1080"
+      expires: "2026-11-14"
   "us/policies/cbp/us-tariff-schedule/generated/ch83/ch83.yaml":
     active:
       fingerprint: "sha256:baa7cb3189cd01b5b453ead91ee8a2f59cd798bbdea038d4ffd23219cc53cd7c"
@@ -743,6 +753,11 @@ validate_failures:  # https://github.com/TheAxiomFoundation/rulespec-us/issues/3
   "us/policies/usitc/us-tariff-duty/lines/generated/ch99b.yaml":
     active:
       fingerprint: "sha256:d3af3b1ef488ebdbed2ccbd4fd1f977384723bc455f8baf12c11085ec32b0d68"
+      owner: "@MaxGhenis"
+      issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/1080"
+      expires: "2026-11-14"
+    pending:
+      fingerprint: "sha256:08fbdbea23cc77f8e8c0b5658dad08e890a13d62e14f027e875c56da92bc501b"
       owner: "@MaxGhenis"
       issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/1080"
       expires: "2026-11-14"
@@ -5828,6 +5843,11 @@ validate_failures:  # https://github.com/TheAxiomFoundation/rulespec-us/issues/3
       owner: "@MaxGhenis"
       issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/782"
       expires: "2026-10-08"
+    pending:
+      fingerprint: "sha256:ece1d6dc36a65b96fb87fecb194c383d7a4dae23d82ca2a227aaa92e4b4f13b2"
+      owner: "@MaxGhenis"
+      issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/782"
+      expires: "2026-10-08"
   "us-wa/policies/cms/washington-chip-eligibility.yaml":
     active:
       fingerprint: "sha256:733844590160aa0b57fdf2930ab866e80079ce80e6e7414880d0219c25d3e5dd"
@@ -5957,6 +5977,11 @@ validate_failures:  # https://github.com/TheAxiomFoundation/rulespec-us/issues/3
   "us/policies/usda/snap/fy-2026-cola/income-eligibility-standards.yaml":
     active:
       fingerprint: "sha256:b361767ba95f7a506cc48997a8c3e87066bfa6b764d2c388faf658a2c94b8c2c"
+      owner: "@MaxGhenis"
+      issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/782"
+      expires: "2026-10-08"
+    pending:
+      fingerprint: "sha256:b6d5e2178839c38f7de7e106e962e5cf68119fbc003c8ac526eaa74aacfa473f"
       owner: "@MaxGhenis"
       issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/782"
       expires: "2026-10-08"
@@ -6875,6 +6900,11 @@ validate_failures:  # https://github.com/TheAxiomFoundation/rulespec-us/issues/3
   "us-ca/policies/cdss/snap/modified-categorical-eligibility.yaml":
     active:
       fingerprint: "sha256:ff2d587c4090be3096be61125239454aa060b8912ed7ee13f381f95b4f41cfb4"
+      owner: "@MaxGhenis"
+      issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/782"
+      expires: "2026-10-08"
+    pending:
+      fingerprint: "sha256:45116f478858923a6f99f334e3f902eb7351ae7fca644dd534518ff462714578"
       owner: "@MaxGhenis"
       issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/782"
       expires: "2026-10-08"
@@ -9554,6 +9584,11 @@ validate_failures:  # https://github.com/TheAxiomFoundation/rulespec-us/issues/3
       owner: "@MaxGhenis"
       issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/782"
       expires: "2026-10-08"
+    pending:
+      fingerprint: "sha256:66be3b761b86185bf90728aeba11edb13e7a0c57eb5a04b7865ffab08a297766"
+      owner: "@MaxGhenis"
+      issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/782"
+      expires: "2026-10-08"
   "us-mo/policies/income_tax/pilot_liability_pipeline.yaml":
     active:
       fingerprint: "sha256:1b5772054969e5574f07782214ca2785716cfecaa002c7c23b63ed4cb76881a5"
@@ -10127,6 +10162,11 @@ validate_failures:  # https://github.com/TheAxiomFoundation/rulespec-us/issues/3
   "us/policies/usitc/us-tariff-duty/lines/generated/ch47.yaml":
     active:
       fingerprint: "sha256:8a8411c3d961fde32e5197ff3ed1662c34aa8bba032bd1dcb67fd6f0ac814c80"
+      owner: "@MaxGhenis"
+      issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/782"
+      expires: "2026-10-08"
+    pending:
+      fingerprint: "sha256:307f3c81626b8122a7cec55b9aa3920b15041f071328cd2913f40cd3b52e206d"
       owner: "@MaxGhenis"
       issue: "https://github.com/TheAxiomFoundation/rulespec-us/issues/782"
       expires: "2026-10-08"
