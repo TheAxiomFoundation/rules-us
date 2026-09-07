@@ -1,0 +1,96 @@
+{
+  "applied_files": [
+    {
+      "path": "us/statutes/7/2015/f.yaml",
+      "sha256": "5fd99b1337fb0897613b64112c8295ed856bc590eadd877bfd0ec6c45c8162e6"
+    },
+    {
+      "path": "us/statutes/7/2015/f.test.yaml",
+      "sha256": "3993faedc7daec5c96d7ba2b303f95d5b5a39317f47931000e027bf7afda5920"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "1daadad265dc9eaa1ab737df87b453a5e5e0cb46",
+    "dirty_tracked": false,
+    "identity_source": "trusted-runtime-attestation",
+    "root": "/opt/axiom-verification/python/runtime-attestation.json",
+    "version": "0.2.1764",
+    "version_commit": "1daadad265dc9eaa1ab737df87b453a5e5e0cb46"
+  },
+  "axiom_encode_version": "0.2.1764",
+  "backend": "openai",
+  "citation": "us/statute/7/2015/f",
+  "context_manifest_file": "/home/runner/work/_temp/generated/target/_eval_workspaces/openai-gpt-5.6-sol/us-statute-7-2015-f/workspace/context-manifest.json",
+  "context_manifest_sha256": "c3d3b64cd69300ade9fd475554a55d6d35b7b516243b274c1a0e4a1ca7dbd296",
+  "generated_at": "2026-09-07T21:50:29.223481+00:00",
+  "generated_output_file": "/home/runner/work/_temp/generated/target/openai-gpt-5.6-sol/statutes/7/2015/f.yaml",
+  "generated_output_root": "/home/runner/work/_temp/generated/target",
+  "generated_output_sha256": "5fd99b1337fb0897613b64112c8295ed856bc590eadd877bfd0ec6c45c8162e6",
+  "generation_prompt_sha256": "f06bc720359548e41e6ef5ba7383b97f17ebb11da96c8fa6029052b7e70b26ca",
+  "model": "gpt-5.6-sol",
+  "run_id": "a553c223",
+  "runner": "openai-gpt-5.6-sol",
+  "schema_version": "axiom-encode/applied-rulespec/v5",
+  "signature": {
+    "algorithm": "ed25519-domain-v1",
+    "key_id": "sha256:24a78725a23b1c83cfc38bdc22f75401d8008e7a8477796b55179d1fc79c4d9a",
+    "value": "SRG5BhvXeNcJV7UA2ThPfdqEmSRYmzdK1NxAp1fsT/omtQ/xbLc/RYPJwtpwBFBX7+yQjS+z1n0Tm7nyZ3yKAg=="
+  },
+  "source_attestation": {
+    "component_rows": [],
+    "corpus_release": "us-rulespec-2026-08-08-obbb-alien-snap",
+    "corpus_release_content_sha256": "0d69a0cdbe024fc2276f3c261c00402bb0a47488ac5f482cc20bd3404980adbc",
+    "corpus_release_selector_sha256": "1b88863f0e6f09c3383e0572666da892d49125f34bda5088bd90a6706d8b37fd",
+    "corpus_source": "local",
+    "expression_date": "2026-06-26",
+    "generation_input_sha256": "239cc65999d115055d13b7b3a72ef1a4c83da4fdbab9ab71d0ea33536d2b96c2",
+    "provision_file": "data/corpus/provisions/us/statute/2026-07-22-rulespec-title-7-consolidated.jsonl",
+    "provision_file_sha256": "88a56c9032cca614208f3d1f324b15417e3bbee3c26ff3ff3c1ad67d64b38213",
+    "requested_corpus_citation_path": "us/statute/7/2015/f",
+    "resolved_corpus_citation_path": "us/statute/7/2015/f",
+    "resolved_text_sha256": "239cc65999d115055d13b7b3a72ef1a4c83da4fdbab9ab71d0ea33536d2b96c2",
+    "row": {
+      "body_sha256": "239cc65999d115055d13b7b3a72ef1a4c83da4fdbab9ab71d0ea33536d2b96c2",
+      "citation_path": "us/statute/7/2015/f",
+      "document_class": "statute",
+      "expression_date": "2026-06-26",
+      "jurisdiction": "us",
+      "line_number": 197,
+      "provision_file": "data/corpus/provisions/us/statute/2026-07-22-rulespec-title-7-consolidated.jsonl",
+      "provision_file_sha256": "88a56c9032cca614208f3d1f324b15417e3bbee3c26ff3ff3c1ad67d64b38213",
+      "record_id": "51527d3a-7ce2-5d09-bdb0-681309bae9e8",
+      "source_as_of": "2026-06-26",
+      "source_path": "sources/us/statute/2026-07-22-rulespec-title-7-consolidated/2026-07-21-snap-chapter-51-title-7-title-7/uslm/usc7.xml",
+      "version": "2026-07-22-rulespec-title-7-consolidated"
+    },
+    "rulespec_root": "rulespec-us/us",
+    "source_as_of": "2026-06-26",
+    "source_sha256": "239cc65999d115055d13b7b3a72ef1a4c83da4fdbab9ab71d0ea33536d2b96c2"
+  },
+  "tool": "axiom-encode encode --apply",
+  "trace_file": "/home/runner/work/_temp/generated/target/traces/openai-gpt-5.6-sol/us-statute-7-2015-f.json",
+  "trace_sha256": "4e196b42d18f4c2daf9287b2446a0e4d4a04571ac7ee0770b6d0146d8cf2fb6a",
+  "validation_execution": {
+    "axiom_encode": {
+      "commit": "1daadad265dc9eaa1ab737df87b453a5e5e0cb46",
+      "identity_source": "trusted-runtime-attestation",
+      "repository": "github.com/TheAxiomFoundation/axiom-encode",
+      "version": "0.2.1764"
+    },
+    "axiom_rules_engine": {
+      "commit": "d142c645917817cf590e036fb99f99b2d4780e1a",
+      "repository": "github.com/TheAxiomFoundation/axiom-rules-engine"
+    },
+    "policy_pre_apply": {
+      "pre_apply_content_sha256": "e51134a13b0a8f5076fb6311341293e843d364201cf9cbaa4c202502257b193c",
+      "pre_apply_file_count": 2709,
+      "rulespec_root": "rulespec-us/us",
+      "toolchain_contract_sha256": "073522172cd8fd0214fb769bfefc29fcd1df41fbe67201f7a71c503be20aed87",
+      "validation_waiver_set_sha256": "dded4ff64d7064d854fef2c2988278b495d4a38af5ceada1d1964612bf2d3453"
+    },
+    "rulespec_dependencies": [],
+    "rulespec_scope": "full_checkout",
+    "schema": "axiom-encode/apply-validation-execution/v2"
+  },
+  "validation_waiver_set_sha256": "dded4ff64d7064d854fef2c2988278b495d4a38af5ceada1d1964612bf2d3453"
+}
