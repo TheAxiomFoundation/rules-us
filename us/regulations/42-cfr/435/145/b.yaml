@@ -1,0 +1,84 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: us/regulation/42/435/145/b
+    source_sha256: d7ee1a4b6f9111196b11abd1a3724be1e05de1ae50fd1129c1b3e77c8061aaf9
+  summary: (b) Eligibility. The agency must provide Medicaid to individuals for whom
+    an adoption assistance agreement is in effect with a State or Tribe under title
+    IV-E of the Act, or foster care or kinship guardianship assistance maintenance
+    payments are being made by a State or Tribe under title IV-E of the Act.
+inputs:
+- name: adoption_assistance_agreement_in_effect_with_state_or_tribe_under_title_iv_e
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: foster_care_maintenance_payments_made_by_state_or_tribe_under_title_iv_e
+  entity: Person
+  dtype: Boolean
+  period: Month
+- name: kinship_guardianship_assistance_maintenance_payments_made_by_state_or_tribe_under_title_iv_e
+  entity: Person
+  dtype: Boolean
+  period: Month
+rules:
+- name: medicaid_eligibility
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: 42 CFR 435.145(b)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: us/regulation/42/435/145/b
+          excerpt: The agency must provide Medicaid to individuals for whom—
+  versions:
+  - effective_from: '0001-01-01'
+    formula: 'adoption_assistance_agreement_in_effect_with_state_or_tribe_under_title_iv_e
+
+      or foster_care_maintenance_payments_made_by_state_or_tribe_under_title_iv_e
+
+      or kinship_guardianship_assistance_maintenance_payments_made_by_state_or_tribe_under_title_iv_e'
+- name: medicaid_eligibility_under_adoption_assistance
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: 42 CFR 435.145(b)(1)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: us/regulation/42/435/145/b
+          excerpt: An adoption assistance agreement is in effect with a State or Tribe
+            under title IV-E of the Act
+  versions:
+  - effective_from: '0001-01-01'
+    formula: adoption_assistance_agreement_in_effect_with_state_or_tribe_under_title_iv_e
+- name: medicaid_eligibility_under_maintenance_payments
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: 42 CFR 435.145(b)(2)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: us/regulation/42/435/145/b
+          excerpt: Foster care or kinship guardianship assistance maintenance payments
+            are being made by a State or Tribe under title IV-E of the Act.
+  versions:
+  - effective_from: '0001-01-01'
+    formula: 'foster_care_maintenance_payments_made_by_state_or_tribe_under_title_iv_e
+
+      or kinship_guardianship_assistance_maintenance_payments_made_by_state_or_tribe_under_title_iv_e'

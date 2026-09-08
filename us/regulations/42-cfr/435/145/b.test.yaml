@@ -1,0 +1,47 @@
+- name: adoption_assistance_agreement_path
+  period: 2026-06
+  input:
+    us:regulations/42-cfr/435/145/b#input.adoption_assistance_agreement_in_effect_with_state_or_tribe_under_title_iv_e: true
+    us:regulations/42-cfr/435/145/b#input.foster_care_maintenance_payments_made_by_state_or_tribe_under_title_iv_e: false
+    ? us:regulations/42-cfr/435/145/b#input.kinship_guardianship_assistance_maintenance_payments_made_by_state_or_tribe_under_title_iv_e
+    : false
+  output:
+    us:regulations/42-cfr/435/145/b#medicaid_eligibility: holds
+    us:regulations/42-cfr/435/145/b#medicaid_eligibility_under_adoption_assistance: holds
+- name: foster_care_maintenance_payment_path
+  period: 2026-06
+  input:
+    us:regulations/42-cfr/435/145/b#input.adoption_assistance_agreement_in_effect_with_state_or_tribe_under_title_iv_e: false
+    us:regulations/42-cfr/435/145/b#input.foster_care_maintenance_payments_made_by_state_or_tribe_under_title_iv_e: true
+    ? us:regulations/42-cfr/435/145/b#input.kinship_guardianship_assistance_maintenance_payments_made_by_state_or_tribe_under_title_iv_e
+    : false
+  output:
+    us:regulations/42-cfr/435/145/b#medicaid_eligibility: holds
+    us:regulations/42-cfr/435/145/b#medicaid_eligibility_under_maintenance_payments: holds
+- name: kinship_guardianship_maintenance_payment_path
+  period: 2026-06
+  input:
+    us:regulations/42-cfr/435/145/b#input.adoption_assistance_agreement_in_effect_with_state_or_tribe_under_title_iv_e: false
+    us:regulations/42-cfr/435/145/b#input.foster_care_maintenance_payments_made_by_state_or_tribe_under_title_iv_e: false
+    ? us:regulations/42-cfr/435/145/b#input.kinship_guardianship_assistance_maintenance_payments_made_by_state_or_tribe_under_title_iv_e
+    : true
+  output:
+    us:regulations/42-cfr/435/145/b#medicaid_eligibility: holds
+    us:regulations/42-cfr/435/145/b#medicaid_eligibility_under_maintenance_payments: holds
+- name: no_title_iv_e_eligibility_path
+  period: 2026-06
+  input:
+    us:regulations/42-cfr/435/145/b#input.adoption_assistance_agreement_in_effect_with_state_or_tribe_under_title_iv_e: false
+    us:regulations/42-cfr/435/145/b#input.foster_care_maintenance_payments_made_by_state_or_tribe_under_title_iv_e: false
+    ? us:regulations/42-cfr/435/145/b#input.kinship_guardianship_assistance_maintenance_payments_made_by_state_or_tribe_under_title_iv_e
+    : false
+  output:
+    us:regulations/42-cfr/435/145/b#medicaid_eligibility: not_holds
+    us:regulations/42-cfr/435/145/b#medicaid_eligibility_under_adoption_assistance: not_holds
+    us:regulations/42-cfr/435/145/b#medicaid_eligibility_under_maintenance_payments: not_holds
+- name: adoption_assistance_agreement_not_in_effect
+  period: 2026-06
+  input:
+    us:regulations/42-cfr/435/145/b#input.adoption_assistance_agreement_in_effect_with_state_or_tribe_under_title_iv_e: false
+  output:
+    us:regulations/42-cfr/435/145/b#medicaid_eligibility_under_adoption_assistance: not_holds
