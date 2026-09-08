@@ -1,0 +1,30 @@
+- name: adoption_assistance_agreement_path_confers_medicaid_eligibility
+  period: 2024-01
+  input:
+    us:regulations/42-cfr/435/145#input.adoption_assistance_agreement_in_effect_with_state_or_tribe_under_title_iv_e: true
+    ? us:regulations/42-cfr/435/145#input.foster_care_or_kinship_guardianship_assistance_maintenance_payments_being_made_by_state_or_tribe_under_title_iv_e
+    : false
+  output:
+    us:regulations/42-cfr/435/145#title_iv_e_adoption_assistance_agreement_path_eligible: holds
+    us:regulations/42-cfr/435/145#title_iv_e_foster_care_or_kinship_guardianship_payment_path_eligible: not_holds
+    us:regulations/42-cfr/435/145#title_iv_e_adoption_foster_care_or_kinship_guardianship_medicaid_eligible: holds
+- name: foster_care_or_kinship_guardianship_payment_path_confers_medicaid_eligibility
+  period: 2024-01
+  input:
+    us:regulations/42-cfr/435/145#input.adoption_assistance_agreement_in_effect_with_state_or_tribe_under_title_iv_e: false
+    ? us:regulations/42-cfr/435/145#input.foster_care_or_kinship_guardianship_assistance_maintenance_payments_being_made_by_state_or_tribe_under_title_iv_e
+    : true
+  output:
+    us:regulations/42-cfr/435/145#title_iv_e_adoption_assistance_agreement_path_eligible: not_holds
+    us:regulations/42-cfr/435/145#title_iv_e_foster_care_or_kinship_guardianship_payment_path_eligible: holds
+    us:regulations/42-cfr/435/145#title_iv_e_adoption_foster_care_or_kinship_guardianship_medicaid_eligible: holds
+- name: neither_title_iv_e_path_does_not_confer_medicaid_eligibility
+  period: 2024-01
+  input:
+    us:regulations/42-cfr/435/145#input.adoption_assistance_agreement_in_effect_with_state_or_tribe_under_title_iv_e: false
+    ? us:regulations/42-cfr/435/145#input.foster_care_or_kinship_guardianship_assistance_maintenance_payments_being_made_by_state_or_tribe_under_title_iv_e
+    : false
+  output:
+    us:regulations/42-cfr/435/145#title_iv_e_adoption_assistance_agreement_path_eligible: not_holds
+    us:regulations/42-cfr/435/145#title_iv_e_foster_care_or_kinship_guardianship_payment_path_eligible: not_holds
+    us:regulations/42-cfr/435/145#title_iv_e_adoption_foster_care_or_kinship_guardianship_medicaid_eligible: not_holds

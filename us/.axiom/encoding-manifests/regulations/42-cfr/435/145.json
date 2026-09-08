@@ -1,0 +1,41 @@
+{
+  "applied_files": [
+    {
+      "path": "regulations/42-cfr/435/145.yaml",
+      "sha256": "5f26ce07056cabcfd90eef2fc9241a398761ffd05e2e35146499683dda585b5b"
+    },
+    {
+      "path": "regulations/42-cfr/435/145.test.yaml",
+      "sha256": "d89f96d03ce87483c222a74277429b4ad95f8f2915acd045516764dd117b42fa"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "3869d66d009f52258be35901edbef370e65a399c",
+    "dirty_tracked": false,
+    "root": "/Users/ziminghua/vscode/TheAxiomFoundation/_mi_fip_toolchain/axiom-encode",
+    "version": "0.2.1200",
+    "version_commit": "3869d66d009f52258be35901edbef370e65a399c"
+  },
+  "axiom_encode_version": "0.2.1200",
+  "backend": "codex",
+  "citation": "us/regulation/42/435/145",
+  "context_manifest_file": "/private/tmp/claude-501/-Users-ziminghua-vscode-TheAxiomFoundation/79e634a5-08c6-422e-8cd9-efc997184f04/scratchpad/local-encode/out-1200-apply/_eval_workspaces/codex-gpt-5.5/us-regulation-42-435-145/workspace/context-manifest.json",
+  "context_manifest_sha256": "6740dddbf5e6b036e60180c11c1acd0f065bf0be71a7819e1a52b3fb58c4bbe5",
+  "generated_at": "2026-09-08T18:30:58.352707+00:00",
+  "generated_output_file": "/private/tmp/claude-501/-Users-ziminghua-vscode-TheAxiomFoundation/79e634a5-08c6-422e-8cd9-efc997184f04/scratchpad/local-encode/out-1200-apply/codex-gpt-5.5/regulations/42-cfr/435/145.yaml",
+  "generated_output_root": "/private/tmp/claude-501/-Users-ziminghua-vscode-TheAxiomFoundation/79e634a5-08c6-422e-8cd9-efc997184f04/scratchpad/local-encode/out-1200-apply",
+  "generated_output_sha256": "5f26ce07056cabcfd90eef2fc9241a398761ffd05e2e35146499683dda585b5b",
+  "generation_prompt_sha256": "d4889ba0bc555253a177a7689ebec343a23304c29843ab7f3b8b28ca5e1fa182",
+  "model": "gpt-5.5",
+  "run_id": "92a0b08b",
+  "runner": "codex-gpt-5.5",
+  "schema_version": "axiom-encode/applied-rulespec/v1",
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "axiom-encode-apply-v1",
+    "value": "3f9f9dc5ae1ab1a10de81fc0f9297a4ffdf0252e2d63616b7e57d8dc05027f6c"
+  },
+  "tool": "axiom-encode encode --apply",
+  "trace_file": "/private/tmp/claude-501/-Users-ziminghua-vscode-TheAxiomFoundation/79e634a5-08c6-422e-8cd9-efc997184f04/scratchpad/local-encode/out-1200-apply/traces/codex-gpt-5.5/us-regulation-42-435-145.json",
+  "trace_sha256": "bfebff7a8e8e4b58cf3f9c1ee4754bf596a0c399a0e002cd0798041731da1cf7"
+}
